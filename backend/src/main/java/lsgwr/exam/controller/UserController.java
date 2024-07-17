@@ -1,9 +1,4 @@
-/***********************************************************
- * @Description : 对外REST接口
- * @author      : 梁山广(Laing Shan Guang)
- * @date        : 2019-05-16 23:45
- * @email       : liangshanguang2@gmail.com
- ***********************************************************/
+
 package lsgwr.exam.controller;
 
 import lsgwr.exam.dto.RegisterDTO;
@@ -20,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @RestController
 @Api(tags = "User APIs")
@@ -76,6 +72,41 @@ public class UserController {
         UserInfoVo userInfoVo = userService.getInfo(userId);
         return new ResultVO<>(ResultEnum.GET_INFO_SUCCESS.getCode(), ResultEnum.GET_INFO_SUCCESS.getMessage(), userInfoVo);
     }
+    @GetMapping("/{id}")
+    @ApiOperation("获取用户信息")
+    public ResultVO<UserVo> getUserInfo(@PathVariable String id) {
+        UserVo userVo = userService.getUserInfo(id);
+        return new ResultVO<>(ResultEnum.GET_INFO_SUCCESS.getCode(), ResultEnum.GET_INFO_SUCCESS.getMessage(), userVo);
+    }
+
+    @GetMapping("/{id}/info")
+    @ApiOperation("获取用户的详细信息，包括个人信息页面和操作权限")
+    public ResultVO<UserInfoVo> getInfo(@PathVariable String id) {
+        UserInfoVo userInfoVo = userService.getInfo(id);
+        return new ResultVO<>(ResultEnum.GET_INFO_SUCCESS.getCode(), ResultEnum.GET_INFO_SUCCESS.getMessage(), userInfoVo);
+    }
+
+    @GetMapping
+    @ApiOperation("获取所有用户")
+    public ResultVO<List<User>> getAllUsers() {
+        List<User> users = userService.getAllUsers();
+        return new ResultVO<>(ResultEnum.GET_INFO_SUCCESS.getCode(), ResultEnum.GET_INFO_SUCCESS.getMessage(), users);
+    }
+
+    @PutMapping("/{id}")
+    @ApiOperation("更新用户信息")
+    public ResultVO<User> updateUser(@PathVariable String id, @RequestBody User user) {
+        User updatedUser = userService.updateUser(id, user);
+        return new ResultVO<>(ResultEnum.GET_INFO_SUCCESS.getCode(), ResultEnum.GET_INFO_SUCCESS.getMessage(), updatedUser);
+    }
+
+    @DeleteMapping("/{id}")
+    @ApiOperation("删除用户")
+    public ResultVO<Void> deleteUser(@PathVariable String id) {
+        userService.deleteUser(id);
+        return new ResultVO<>(ResultEnum.GET_INFO_SUCCESS.getCode(), ResultEnum.GET_INFO_SUCCESS.getMessage(), null);
+    }
+
 
     @GetMapping("/test")
     @ApiOperation("测试接口")

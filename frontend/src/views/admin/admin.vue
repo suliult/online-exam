@@ -1,8 +1,8 @@
 <template>
   <div class="user-management">
     <h1>用户管理</h1>
-    <a-table :columns="columns" :data-source="users" :loading="loading" :rowKey="record => record.id">
-      <template slot="role" slot-scope="text">
+    <a-table :columns="columns" :data-source="users" :loading="loading" :rowKey="record => record.userId">
+      <template slot="userRoleId" slot-scope="text">
         {{ getRoleName(text) }}
       </template>
       <template slot="action" slot-scope="text, record">
@@ -12,7 +12,7 @@
           title="确定删除该用户吗？"
           ok-text="是"
           cancel-text="否"
-          @confirm="handleDelete(record.id)"
+          @confirm="handleDelete(record.userId)"
         >
           <a-button type="link">删除</a-button>
         </a-popconfirm>
@@ -28,23 +28,23 @@
     >
       <a-form-model :model="currentUser" :label-col="{ span: 6 }" :wrapper-col="{ span: 14 }">
         <a-form-model-item label="用户名">
-          <a-input v-model="currentUser.username" />
+          <a-input v-model="currentUser.userUsername" />
         </a-form-model-item>
         <a-form-model-item label="昵称">
-          <a-input v-model="currentUser.nickname" />
+          <a-input v-model="currentUser.userNickname" />
         </a-form-model-item>
         <a-form-model-item label="角色">
-          <a-select v-model="currentUser.role">
+          <a-select v-model="currentUser.userRoleId">
             <a-select-option :value="1">管理员</a-select-option>
             <a-select-option :value="2">教师</a-select-option>
             <a-select-option :value="3">学生</a-select-option>
           </a-select>
         </a-form-model-item>
         <a-form-model-item label="邮箱">
-          <a-input v-model="currentUser.email" />
+          <a-input v-model="currentUser.userEmail" />
         </a-form-model-item>
         <a-form-model-item label="电话">
-          <a-input v-model="currentUser.phone" />
+          <a-input v-model="currentUser.userPhone" />
         </a-form-model-item>
       </a-form-model>
     </a-modal>
@@ -58,12 +58,12 @@ export default {
   data () {
     return {
       columns: [
-        { title: 'ID', dataIndex: 'id', key: 'id' },
-        { title: '用户名', dataIndex: 'username', key: 'username' },
-        { title: '昵称', dataIndex: 'nickname', key: 'nickname' },
-        { title: '角色', dataIndex: 'role', key: 'role', scopedSlots: { customRender: 'role' } },
-        { title: '邮箱', dataIndex: 'email', key: 'email' },
-        { title: '电话', dataIndex: 'phone', key: 'phone' },
+        { title: 'ID', dataIndex: 'userId', key: 'userId' },
+        { title: '用户名', dataIndex: 'userUsername', key: 'userUsername' },
+        { title: '昵称', dataIndex: 'userNickname', key: 'userNickname' },
+        { title: '角色', dataIndex: 'userRoleId', key: 'userRoleId', scopedSlots: { customRender: 'userRoleId' } },
+        { title: '邮箱', dataIndex: 'userEmail', key: 'userEmail' },
+        { title: '电话', dataIndex: 'userPhone', key: 'userPhone' },
         { title: '创建时间', dataIndex: 'createTime', key: 'createTime' },
         { title: '更新时间', dataIndex: 'updateTime', key: 'updateTime' },
         { title: '操作', key: 'action', scopedSlots: { customRender: 'action' } }
@@ -99,6 +99,11 @@ export default {
       }
     },
 
+    handleEdit(record) {
+      this.currentUser = { ...record }
+      this.modalVisible = true
+    },
+
     async handleDelete(userId) {
       try {
         await deleteUser(userId)
@@ -112,7 +117,7 @@ export default {
     async handleSave() {
       this.confirmLoading = true
       try {
-        await updateUser(this.currentUser.id, this.currentUser)
+        await updateUser(this.currentUser.userId, this.currentUser)
         this.$message.success('保存成功')
         this.modalVisible = false
         this.fetchUsers()

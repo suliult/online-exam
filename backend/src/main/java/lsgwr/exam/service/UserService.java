@@ -12,6 +12,8 @@ import lsgwr.exam.qo.LoginQo;
 import lsgwr.exam.vo.UserInfoVo;
 import lsgwr.exam.vo.UserVo;
 
+import java.util.List;
+
 public interface UserService {
     /**
      * 注册
@@ -42,4 +44,9 @@ public interface UserService {
      * @return 用户信息组装的实体
      */
     UserInfoVo getInfo(String userId);
+    List<User> getAllUsers();
+
+    User updateUser(String userId, User user);
+
+    void deleteUser(String userId);
 }
