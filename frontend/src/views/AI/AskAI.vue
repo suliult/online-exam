@@ -327,11 +327,77 @@ export default {
 </script>
 
 <style scoped>
-/* 保持原有的样式不变，只添加新的样式 */
+.chat-container {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 250px;
+  background: #f0f0f0;
+  overflow-y: auto;
+  border-right: 1px solid #d9d9d9;
+}
+
+.chat-list .active-chat {
+  background: #e6f7ff;
+}
+
 .chat-list > div {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.main-chat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background: #fafafa;
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.chat-body {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  background: #fff;
+  position: relative;
+}
+
+.message {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.message.user .content {
+  background: #e6f7ff;
+  border-radius: 10px 10px 0 10px;
+  padding: 10px;
+}
+
+.message.assistant .content {
+  background: #f6f6f6;
+  border-radius: 10px 10px 10px 0;
+  padding: 10px;
+}
+
+.avatar {
+  margin-right: 10px;
+}
+
+.message .content {
+  flex: 1;
 }
 
 .message-actions {
@@ -340,5 +406,20 @@ export default {
 
 .message-actions .ant-btn {
   margin-right: 10px;
+}
+
+.chat-input {
+  display: flex;
+  padding: 15px;
+  border-top: 1px solid #d9d9d9;
+  background: #fafafa;
+}
+
+.loading {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 </style>
