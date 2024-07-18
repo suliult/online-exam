@@ -1,9 +1,4 @@
-/***********************************************************
- * @Description : 用户服务
- * @author      : 梁山广(Laing Shan Guang)
- * @date        : 2019-05-17 08:03
- * @email       : liangshanguang2@gmail.com
- ***********************************************************/
+
 package lsgwr.exam.service.impl;
 
 import cn.hutool.core.codec.Base64;
@@ -46,6 +41,7 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     ActionRepository actionRepository;
+
 
 
     @Override
@@ -171,23 +167,25 @@ public class UserServiceImpl implements UserService {
         userInfoVo.setRoleVo(roleVo);
         return userInfoVo;
     }
-    @Override
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
-    }
 
-    @Override
-    public User updateUser(String userId, User user) {
-        User existingUser = userRepository.findById(userId).orElse(null);
-        if (existingUser != null) {
-            BeanUtils.copyProperties(user, existingUser, "userId", "userPassword", "createTime", "updateTime");
-            return userRepository.save(existingUser);
-        }
-        return null;
-    }
 
-    @Override
-    public void deleteUser(String userId) {
-        userRepository.deleteById(userId);
-    }
+//    @Override
+//    public List<User> getAllUsers() {
+//        return userRepository.findAll();
+//    }
+//
+//    @Override
+//    public User updateUser(String userId, User user) {
+//        User existingUser = userRepository.findById(userId).orElse(null);
+//        if (existingUser != null) {
+//            BeanUtils.copyProperties(user, existingUser, "userId", "userPassword", "createTime", "updateTime");
+//            return userRepository.save(existingUser);
+//        }
+//        return null;
+//    }
+//
+//    @Override
+//    public void deleteUser(String userId) {
+//        userRepository.deleteById(userId);
+//    }
 }

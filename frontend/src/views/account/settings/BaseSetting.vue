@@ -55,6 +55,7 @@
           <img :src="option.img"/>
         </div>
       </a-col>
+
     </a-row>
     <avatar-modal ref="modal" @ok="handleAvatarOk"></avatar-modal>
   </div>
