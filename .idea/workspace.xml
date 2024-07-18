@@ -5,13 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6e7b16b9-5f2b-453e-a9a8-86ad095ca8c0" name="更改" comment="1">
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/dto/UserDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/config/MailConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/dto/RegisterDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/dto/RegisterDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/enums/ResultEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/enums/ResultEnum.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/service/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/api/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/admin/admin.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/admin/admin.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/config/router.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/config/router.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/AI/AskAI.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/AI/AskAI.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/account/settings/BaseSetting.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/account/settings/BaseSetting.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/user/Register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/user/Register.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,19 +34,20 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "suliult"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;suliult&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/suliult/online-exam.git",
-    "accountId": "a3417453-88a8-480f-9c8d-812e4802a310"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/suliult/online-exam.git&quot;,
+    &quot;accountId&quot;: &quot;a3417453-88a8-480f-9c8d-812e4802a310&quot;
   }
-}]]></component>
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -54,36 +61,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Maven.exam [clean].executor": "Run",
-    "Maven.exam [install].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/Download/spring-boot-online-exam-master",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.standard": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.standard": "",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "模块",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "settings.vue",
-    "ts.external.directory.path": "C:\\Program Files (x86)\\JetBrains\\IntelliJ IDEA 2024.1.4\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true",
-    "应用程序.ExamApplication.executor": "Run"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Maven.exam [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.exam [install].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Download/spring-boot-online-exam-master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;模块&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files (x86)\\JetBrains\\IntelliJ IDEA 2024.1.4\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;,
+    &quot;应用程序.ExamApplication.executor&quot;: &quot;Run&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Download\spring-boot-online-exam-master\frontend\src\views\user" />
       <recent name="D:\Download\spring-boot-online-exam-master\frontend\src\views\list" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Download\spring-boot-online-exam-master\frontend\src\views\user" />
+      <recent name="D:\Download\spring-boot-online-exam-master\backend\src\main\java\lsgwr\exam\config" />
       <recent name="D:\Download\spring-boot-online-exam-master\frontend\src\views\list" />
     </key>
   </component>
@@ -137,6 +146,7 @@
       <workItem from="1721177421976" duration="2688000" />
       <workItem from="1721180302999" duration="12699000" />
       <workItem from="1721205431636" duration="5660000" />
+      <workItem from="1721285436545" duration="549000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <option name="closed" value="true" />

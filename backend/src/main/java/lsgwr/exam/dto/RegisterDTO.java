@@ -10,6 +10,7 @@ import lombok.Data;
 
 @Data
 public class RegisterDTO {
+
     private String email;
     private String password;
     private String password2;
@@ -17,5 +18,6 @@ public class RegisterDTO {
     /**
      * 验证码
      */
+    private String code;
     private String captcha;
 }

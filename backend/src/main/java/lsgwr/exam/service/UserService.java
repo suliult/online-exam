@@ -11,6 +11,7 @@ import lsgwr.exam.entity.User;
 import lsgwr.exam.qo.LoginQo;
 import lsgwr.exam.vo.UserInfoVo;
 import lsgwr.exam.vo.UserVo;
+import org.springframework.mail.SimpleMailMessage;
 
 import java.util.List;
 
@@ -49,4 +50,5 @@ public interface UserService {
     User updateUser(String userId, User user);
 
     void deleteUser(String userId);
+
 }

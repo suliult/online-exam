@@ -72,7 +72,7 @@ export default {
     ASpin: Spin,
     VueMarkdown
   },
-  data() {
+  data () {
     return {
       chats: [{ title: '新对话', messages: [] }],
       currentChatIndex: 0,
@@ -88,31 +88,31 @@ export default {
     }
   },
   computed: {
-    currentChat() {
+    currentChat () {
       return this.chats[this.currentChatIndex]
     }
   },
-  mounted() {
+  mounted () {
     this.loadChatsFromStorage()
     this.highlightCode()
   },
   methods: {
-    newChat() {
+    newChat () {
       this.chats.push({ title: '新对话', messages: [] })
       this.currentChatIndex = this.chats.length - 1
       this.saveChatsToStorage()
     },
-    selectChat(index) {
+    selectChat (index) {
       this.currentChatIndex = index
     },
-    handleEnter(e) {
+    handleEnter (e) {
       if (e.ctrlKey || e.shiftKey) {
         return
       }
       e.preventDefault()
       this.sendMessage()
     },
-    async sendMessage() {
+    async sendMessage () {
       if (!this.inputMessage.trim()) {
         message.warning('请输入消息')
         return
@@ -126,8 +126,10 @@ export default {
 
       try {
         const response = await this.getAnswer(this.currentChat.messages)
-        if (response && response.content) {
-          this.typewriterEffect(response)
+        console.log('Processed response:', response) // 添加日志
+        if (response && (typeof response === 'string' || typeof response.content === 'string')) {
+          const content = typeof response === 'string' ? response : response.content
+          this.typewriterEffect({ role: 'assistant', content: content })
           if (this.currentChat.messages.length === 2) {
             this.currentChat.title = this.generateTitle(currentInput)
           }
@@ -135,6 +137,7 @@ export default {
           throw new Error('Invalid response format')
         }
       } catch (error) {
+        console.error('Error in sendMessage:', error)
         this.currentChat.messages.push({
           role: 'assistant',
           content: `错误: ${error.message || '未知错误，请稍后再试'}`,
@@ -147,44 +150,42 @@ export default {
         this.saveChatsToStorage()
       }
     },
-    async getAnswer(messages) {
+    async getAnswer (messages) {
       try {
         const response = await chatWithGpt({
           model: this.selectedModel,
           messages: messages
         })
+        console.log('API Response:', response) // 添加日志
         if (response && response.data) {
-          return {content: response.data}
+          return response.data
         } else {
           throw new Error('Unexpected response format')
         }
       } catch (error) {
-        if (error.response) {
-          throw new Error(`服务器错误 (${error.response.status}): ${error.response.data || '未知错误'}`)
-        } else if (error.request) {
-          throw new Error('未收到服务器响应')
-        } else {
-          throw error
-        }
+        console.error('Error in getAnswer:', error)
+        throw error
       }
     },
-    scrollToBottom() {
+    scrollToBottom () {
       this.$nextTick(() => {
         const container = this.$refs.chatBody
         container.scrollTop = container.scrollHeight
       })
     },
-    generateTitle(content) {
+    generateTitle (content) {
       return content.slice(0, 20) + (content.length > 20 ? '...' : '')
     },
-    typewriterEffect(response) {
+    typewriterEffect (response) {
+      console.log('Starting typewriter effect with:', response) // 添加日志
       let i = 0
       const speed = 30
       const content = response.content
       if (!content) {
+        console.error('Invalid content in typewriterEffect:', response)
         return
       }
-      const tempMessage = {role: 'assistant', content: ''}
+      const tempMessage = { role: 'assistant', content: '' }
       this.currentChat.messages.push(tempMessage)
 
       const typeWriter = () => {
@@ -195,26 +196,27 @@ export default {
           this.scrollToBottom()
           setTimeout(typeWriter, speed)
         } else {
+          console.log('Typewriter effect completed') // 添加日志
           this.highlightCode()
         }
       }
 
       typeWriter()
     },
-    saveChatsToStorage() {
+    saveChatsToStorage () {
       localStorage.setItem('chats', JSON.stringify(this.chats))
     },
-    loadChatsFromStorage() {
+    loadChatsFromStorage () {
       const savedChats = localStorage.getItem('chats')
       if (savedChats) {
         this.chats = JSON.parse(savedChats)
       }
     },
-    exportChat() {
+    exportChat () {
       const chatContent = this.currentChat.messages
         .map(msg => `${msg.role}: ${msg.content}`)
         .join('\n\n')
-      const blob = new Blob([chatContent], {type: 'text/plain;charset=utf-8'})
+      const blob = new Blob([chatContent], { type: 'text/plain;charset=utf-8' })
       const url = URL.createObjectURL(blob)
       const link = document.createElement('a')
       link.href = url
@@ -222,14 +224,14 @@ export default {
       link.click()
       URL.revokeObjectURL(url)
     },
-    highlightCode() {
+    highlightCode () {
       this.$nextTick(() => {
         document.querySelectorAll('pre code').forEach((block) => {
           hljs.highlightBlock(block)
         })
       })
     },
-    retryMessage(index) {
+    retryMessage (index) {
       const messagesToRetry = this.currentChat.messages.slice(0, index + 1)
       this.currentChat.messages = messagesToRetry
       this.sendMessage()
@@ -237,7 +239,7 @@ export default {
   },
   watch: {
     'currentChat.messages': {
-      handler() {
+      handler () {
         this.highlightCode()
       },
       deep: true

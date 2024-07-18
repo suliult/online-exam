@@ -74,7 +74,9 @@
             size="large"
             :disabled="state.smsSendBtn"
             @click.stop.prevent="getCaptcha"
-            v-text="!state.smsSendBtn && '获取验证码'||(state.time+' s')"></a-button>
+          >
+            {{ state.smsSendBtn ? `${state.time} s` : '获取验证码' }}
+          </a-button>
         </a-col>
       </a-row>
       <a-form-item>
@@ -96,6 +98,7 @@
 <script>
 import { mixinDevice } from '../../utils/mixin.js'
 import { register } from '../../api/user'
+import axios from 'axios'
 const levelNames = {
   0: '低',
   1: '低',
@@ -220,41 +223,33 @@ export default {
         })
       }
     },
-    getCaptcha () {
+    async getCaptcha () {
+      if (this.state.smsSendBtn) return
+
+      this.state.smsSendBtn = true
+      const interval = setInterval(() => {
+        this.state.time--
+        if (this.state.time === 0) {
+          clearInterval(interval)
+          this.state.time = 60
+          this.state.smsSendBtn = false
+        }
+      }, 1000)
       code = ''
       const chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
       for (let i = 0; i < 4; i++) {
         const randomIndex = Math.floor(Math.random() * chars.length)
         code += chars[randomIndex]
       }
-      const nodemailer = require('nodemailer') // 引入nodemailer库
-
-      // 创建传输器对象并配置SMTP参数
-      const transporter = nodemailer.createTransport({
-        service: 'qq', // 使用QQ邮箱服务（或其他SMTP服务）
-        auth: {
-          user: '1423562528@qq.com', // 你的QQ邮箱账号或SMTP用户名
-          pass: 'kmdctvnffmchjghi' // 你的QQ邮箱授权码
-        },
-        secure: true // 是否启用加密，根据你的邮件服务商要求配置
-      })
-
-      // 定义邮件选项
-      const mailOptions = {
-        from: '1423562528@qq.com', // 发件人邮箱地址
-        to: '1423562528@qq.com', // 收件人邮箱地址，可以是一个邮箱地址或者一个包含多个邮箱地址的数组
-        subject: 'Test Email', // 邮件主题
-        text: '这是一封测试邮件' // 邮件纯文本内容
+      try {
+        const response = await axios.post('http://localhost:9527/api/user/sendSMS', {
+          email: this.form.getFieldValue('email'),
+          code: code
+        })
+        console.log('注册成功:', response.data)
+      } catch (error) {
+        console.error('注册失败:', error)
       }
-
-      // 使用传输器对象发送邮件
-      transporter.sendMail(mailOptions, function (error, info) {
-        if (error) {
-          console.log(error)
-        } else {
-          console.log('Email sent: ' + info.response)
-        }
-      })
     }
   }
 }

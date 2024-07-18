@@ -11,7 +11,11 @@ import lsgwr.exam.vo.UserInfoVo;
 import lsgwr.exam.vo.UserVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,18 +28,40 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private JavaMailSender mailSender;
+
+//    @PostMapping("/register")
+//    @ApiOperation("注册")
+//    ResultVO<User> register(@RequestBody RegisterDTO registerDTO) {
+//        ResultVO<User> resultVO = new ResultVO<>();
+//        // 注册信息的完善，还有唯一性校验没(用户名、邮箱和手机号)已经在user表中通过unique来设置了
+//        User user = userService.register(registerDTO);
+//        if (user != null) {
+//            // 注册成功
+//            resultVO = new ResultVO<>(ResultEnum.REGISTER_SUCCESS.getCode(), ResultEnum.REGISTER_SUCCESS.getMessage(), user);
+//        } else {
+//            resultVO = new ResultVO<>(ResultEnum.REGISTER_FAILED.getCode(), ResultEnum.REGISTER_FAILED.getMessage(), null);
+//        }
+//        return resultVO;
+//    }
+
 
     @PostMapping("/register")
     @ApiOperation("注册")
     ResultVO<User> register(@RequestBody RegisterDTO registerDTO) {
-        ResultVO<User> resultVO;
+        ResultVO<User> resultVO = new ResultVO<>();
         // 注册信息的完善，还有唯一性校验没(用户名、邮箱和手机号)已经在user表中通过unique来设置了
         User user = userService.register(registerDTO);
         if (user != null) {
             // 注册成功
-            resultVO = new ResultVO<>(ResultEnum.REGISTER_SUCCESS.getCode(), ResultEnum.REGISTER_SUCCESS.getMessage(), user);
+            resultVO.setCode(ResultEnum.REGISTER_SUCCESS.getCode());
+            resultVO.setMsg(ResultEnum.REGISTER_SUCCESS.getMessage());
+            resultVO.setData(user);
         } else {
-            resultVO = new ResultVO<>(ResultEnum.REGISTER_FAILED.getCode(), ResultEnum.REGISTER_FAILED.getMessage(), null);
+            // 用户名已经存在
+            resultVO.setCode(ResultEnum.USER_EXISTS.getCode());
+            resultVO.setMsg(ResultEnum.USER_EXISTS.getMessage());
         }
         return resultVO;
     }
@@ -117,5 +143,20 @@ public class UserController {
         System.out.println("用户id：" + userId);
         System.out.println("用户名：" + username);
         return "用户id：" + userId + "\n用户名：" + username;
+    }
+    @PostMapping("/sendSMS")
+    public ResponseEntity<String> sendSMS(@RequestBody RegisterDTO request) {
+        // 处理验证码发送逻辑
+        System.out.println("发送验证码到邮箱: " + request.getEmail());
+        System.out.println("生成的验证码: " + request.getCode());
+        // 发送人的邮箱比如 155156641XX@163.com
+        SimpleMailMessage message = new SimpleMailMessage();
+
+        message.setFrom("1423562528@qq.com"); // 发送人的邮箱
+        message.setSubject("在线考试系统验证码"); // 标题
+        message.setTo(request.getEmail()); // 发给谁  对方邮箱
+        message.setText("您的在线考试系统验证码为：" + request.getCode());// 内容
+        mailSender.send(message); // 发送
+        return ResponseEntity.ok("验证码发送成功");
     }
 }

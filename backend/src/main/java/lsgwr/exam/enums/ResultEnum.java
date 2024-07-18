@@ -15,7 +15,9 @@ public enum ResultEnum {
     PRODUCT_STOCK_ERR(11, "考试信息异常"),
     ORDER_STATUS_ERR(14, "考试状态异常"),
     ORDER_UPDATE_ERR(15, "考试更新异常"),
-    ORDER_DETAIL_EMPTY(16, "用户详情为空");
+    ORDER_DETAIL_EMPTY(16, "用户详情为空"),
+    DATABASE_ERROR (17,"数据库错误"),
+    USER_EXISTS(18, "请勿重复创建用户");
 
     ResultEnum(Integer code, String message) {
         this.code = code;
