@@ -4,20 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e7b16b9-5f2b-453e-a9a8-86ad095ca8c0" name="更改" comment="1">
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/config/MailConfig.java" afterDir="false" />
+    <list default="true" id="6e7b16b9-5f2b-453e-a9a8-86ad095ca8c0" name="更改" comment="ok">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/dto/RegisterDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/dto/RegisterDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/enums/ResultEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/enums/ResultEnum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/config/router.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/config/router.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/views/AI/AskAI.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/AI/AskAI.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/account/settings/BaseSetting.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/account/settings/BaseSetting.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/user/Register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/user/Register.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,7 +135,7 @@
       <workItem from="1721177421976" duration="2688000" />
       <workItem from="1721180302999" duration="12699000" />
       <workItem from="1721205431636" duration="5660000" />
-      <workItem from="1721285436545" duration="549000" />
+      <workItem from="1721285436545" duration="925000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <option name="closed" value="true" />
@@ -164,7 +153,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721206727991</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="ok">
+      <option name="closed" value="true" />
+      <created>1721286213491</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1721286213492</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -183,7 +180,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="1" />
-    <option name="LAST_COMMIT_MESSAGE" value="1" />
+    <MESSAGE value="ok" />
+    <option name="LAST_COMMIT_MESSAGE" value="ok" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

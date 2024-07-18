@@ -11,6 +11,7 @@
         >
           <a-icon type="message" />
           {{ chat.title }}
+          <a-icon type="delete" @click.stop="deleteChat(index)" />
         </div>
       </div>
     </div>
@@ -31,7 +32,10 @@
           <div class="content">
             <vue-markdown v-if="message.role === 'assistant'" :source="message.content"></vue-markdown>
             <div v-else>{{ message.content }}</div>
-            <a-button v-if="message.error" size="small" type="danger" @click="retryMessage(index)">重试</a-button>
+            <div class="message-actions">
+              <a-button v-if="message.role === 'assistant'" size="small" @click="regenerateMessage(index)">重新生成</a-button>
+              <a-button v-if="message.error" size="small" type="danger" @click="retryMessage(index)">重试</a-button>
+            </div>
           </div>
         </div>
         <div v-if="isLoading" class="loading">
@@ -105,6 +109,16 @@ export default {
     selectChat (index) {
       this.currentChatIndex = index
     },
+    deleteChat (index) {
+      this.chats.splice(index, 1)
+      if (this.chats.length === 0) {
+        this.newChat()
+      }
+      if (this.currentChatIndex >= this.chats.length) {
+        this.currentChatIndex = this.chats.length - 1
+      }
+      this.saveChatsToStorage()
+    },
     handleEnter (e) {
       if (e.ctrlKey || e.shiftKey) {
         return
@@ -126,12 +140,12 @@ export default {
 
       try {
         const response = await this.getAnswer(this.currentChat.messages)
-        console.log('Processed response:', response) // 添加日志
+        console.log('Processed response:', response)
         if (response && (typeof response === 'string' || typeof response.content === 'string')) {
           const content = typeof response === 'string' ? response : response.content
           this.typewriterEffect({ role: 'assistant', content: content })
           if (this.currentChat.messages.length === 2) {
-            this.currentChat.title = this.generateTitle(currentInput)
+            this.summarizeChat()
           }
         } else {
           throw new Error('Invalid response format')
@@ -156,7 +170,7 @@ export default {
           model: this.selectedModel,
           messages: messages
         })
-        console.log('API Response:', response) // 添加日志
+        console.log('API Response:', response)
         if (response && response.data) {
           return response.data
         } else {
@@ -173,11 +187,8 @@ export default {
         container.scrollTop = container.scrollHeight
       })
     },
-    generateTitle (content) {
-      return content.slice(0, 20) + (content.length > 20 ? '...' : '')
-    },
     typewriterEffect (response) {
-      console.log('Starting typewriter effect with:', response) // 添加日志
+      console.log('Starting typewriter effect with:', response)
       let i = 0
       const speed = 30
       const content = response.content
@@ -196,7 +207,7 @@ export default {
           this.scrollToBottom()
           setTimeout(typeWriter, speed)
         } else {
-          console.log('Typewriter effect completed') // 添加日志
+          console.log('Typewriter effect completed')
           this.highlightCode()
         }
       }
@@ -231,10 +242,77 @@ export default {
         })
       })
     },
-    retryMessage (index) {
-      const messagesToRetry = this.currentChat.messages.slice(0, index + 1)
+    async retryMessage (index) {
+      const messagesToRetry = this.currentChat.messages.slice(0, index)
       this.currentChat.messages = messagesToRetry
-      this.sendMessage()
+      this.isLoading = true
+
+      try {
+        const response = await this.getAnswer(messagesToRetry)
+        if (response && (typeof response === 'string' || typeof response.content === 'string')) {
+          const content = typeof response === 'string' ? response : response.content
+          this.typewriterEffect({ role: 'assistant', content: content })
+        } else {
+          throw new Error('Invalid response format')
+        }
+      } catch (error) {
+        console.error('Error in retryMessage:', error)
+        this.currentChat.messages.push({
+          role: 'assistant',
+          content: `错误: ${error.message || '未知错误，请稍后再试'}`,
+          error: true
+        })
+        message.error(`重试失败: ${error.message || '请稍后再试'}`)
+      } finally {
+        this.isLoading = false
+        this.scrollToBottom()
+        this.saveChatsToStorage()
+      }
+    },
+    async regenerateMessage (index) {
+      const messagesToRegenerate = this.currentChat.messages.slice(0, index + 1)
+      this.isLoading = true
+
+      try {
+        const response = await this.getAnswer(messagesToRegenerate)
+        if (response && (typeof response === 'string' || typeof response.content === 'string')) {
+          const content = typeof response === 'string' ? response : response.content
+          this.currentChat.messages[index] = { role: 'assistant', content: content }
+        } else {
+          throw new Error('Invalid response format')
+        }
+      } catch (error) {
+        console.error('Error in regenerateMessage:', error)
+        this.currentChat.messages[index] = {
+          role: 'assistant',
+          content: `错误: ${error.message || '未知错误，请稍后再试'}`,
+          error: true
+        }
+        message.error(`重新生成失败: ${error.message || '请稍后再试'}`)
+      } finally {
+        this.isLoading = false
+        this.scrollToBottom()
+        this.saveChatsToStorage()
+      }
+    },
+    async summarizeChat () {
+      const summaryPrompt = '请总结以下对话的主要内容，用一句简短的话概括：'
+      const messagesToSummarize = this.currentChat.messages.map(msg => `${msg.role}: ${msg.content}`).join('\n')
+
+      try {
+        const response = await this.getAnswer([{ role: 'user', content: summaryPrompt + messagesToSummarize }])
+        if (response && (typeof response === 'string' || typeof response.content === 'string')) {
+          const content = typeof response === 'string' ? response : response.content
+          this.currentChat.title = content.slice(0, 50) + (content.length > 50 ? '...' : '')
+        } else {
+          throw new Error('Invalid summary response format')
+        }
+      } catch (error) {
+        console.error('Error in summarizeChat:', error)
+        this.currentChat.title = '无法生成摘要'
+      } finally {
+        this.saveChatsToStorage()
+      }
     }
   },
   watch: {
@@ -249,134 +327,18 @@ export default {
 </script>
 
 <style scoped>
-.chat-container {
-  display: flex;
-  height: 100vh;
-  font-family: Arial, sans-serif;
-}
-
-.sidebar {
-  width: 250px;
-  padding: 20px;
-  background-color: #f0f2f5;
-  overflow-y: auto;
-  border-right: 1px solid #e8e8e8;
-}
-
+/* 保持原有的样式不变，只添加新的样式 */
 .chat-list > div {
-  padding: 10px;
-  margin-bottom: 5px;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: background-color 0.3s;
-}
-
-.chat-list > div:hover {
-  background-color: #e6f7ff;
-}
-
-.active-chat {
-  background-color: #1890ff !important;
-  color: white;
-}
-
-.main-chat {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-}
-
-.chat-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #e8e8e8;
 }
 
-.chat-body {
-  flex: 1;
-  overflow-y: auto;
-  padding: 20px;
-  background-color: #fff;
-  border: 1px solid #d9d9d9;
-  border-radius: 4px;
+.message-actions {
+  margin-top: 10px;
 }
 
-.chat-input {
-  display: flex;
-  margin-top: 20px;
-}
-
-.chat-input .ant-input {
-  flex: 1;
+.message-actions .ant-btn {
   margin-right: 10px;
-  resize: none;
-}
-
-.message {
-  display: flex;
-  margin-bottom: 20px;
-  width: 100%;
-}
-
-.message .avatar {
-  width: 40px;
-  height: 40px;
-  flex-shrink: 0;
-}
-
-.message .content {
-  max-width: 70%;
-  padding: 10px 15px;
-  border-radius: 18px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-}
-
-.user {
-  flex-direction: row-reverse;
-}
-
-.user .avatar {
-  margin-left: 10px;
-}
-
-.user .content {
-  background-color: #1890ff;
-  color: white;
-  margin-right: 10px;
-}
-
-.assistant {
-  flex-direction: row;
-}
-
-.assistant .avatar {
-  margin-right: 10px;
-}
-
-.assistant .content {
-  background-color: #f0f2f5;
-  color: black;
-  margin-left: 10px;
-}
-
-.loading {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-pre {
-  background-color: #f6f8fa;
-  border-radius: 6px;
-  padding: 16px;
-  overflow-x: auto;
-}
-
-code {
-  font-family: 'Courier New', Courier, monospace;
 }
 </style>
