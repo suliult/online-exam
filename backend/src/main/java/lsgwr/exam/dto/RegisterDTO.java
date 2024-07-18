@@ -1,9 +1,6 @@
-/***********************************************************
- * @Description : 注册接口参数
- * @author      : 梁山广(Laing Shan Guang)
- * @date        : 2019-05-16 23:40
- * @email       : liangshanguang2@gmail.com
- ***********************************************************/
+
+//@Description : 注册接口参数
+
 package lsgwr.exam.dto;
 
 import lombok.Data;
@@ -11,13 +8,10 @@ import lombok.Data;
 @Data
 public class RegisterDTO {
 
-    private String email;
-    private String password;
+    private String email;//邮箱
+    private String password;//密码
     private String password2;
-    private String mobile;
-    /**
-     * 验证码
-     */
-    private String code;
+    private String mobile;//手机号码
+    private String code;//验证码
     private String captcha;
 }

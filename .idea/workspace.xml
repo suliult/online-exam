@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e7b16b9-5f2b-453e-a9a8-86ad095ca8c0" name="更改" comment="gg">
+    <list default="true" id="6e7b16b9-5f2b-453e-a9a8-86ad095ca8c0" name="更改" comment="ok">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/controller/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/service/impl/UserServiceImpl.java" afterDir="false" />
@@ -79,7 +79,7 @@
     "vue.rearranger.settings.migration": "true",
     "应用程序.ExamApplication.executor": "Run"
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Download\spring-boot-online-exam-master\frontend\src\views\user" />

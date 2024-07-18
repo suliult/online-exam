@@ -1,11 +1,5 @@
-/***********************************************************
- * @Description : 考试服务
- * @author      : 梁山广(Laing Shan Guang)
- * @date        : 2019-05-28 08:04
- * @email       : liangshanguang2@gmail.com
- ***********************************************************/
 package lsgwr.exam.controller;
-
+//* 该类处理与考试相关的HTTP请求。
 import lsgwr.exam.entity.Exam;
 import lsgwr.exam.entity.ExamRecord;
 import lsgwr.exam.service.ExamService;
@@ -27,6 +21,11 @@ public class ExamController {
     @Autowired
     private ExamService examService;
 
+    /**
+     * 获取所有问题的列表。
+     *
+     * @return 包含所有问题列表的结果。
+     */
     @GetMapping("/question/all")
     @ApiOperation("获取所有问题的列表")
     ResultVO<List<QuestionVo>> getQuestionAll() {
@@ -41,6 +40,12 @@ public class ExamController {
         return resultVO;
     }
 
+    /**
+     * 更新问题。
+     *
+     * @param questionVo 问题对象。
+     * @return 包含更新结果的结果对象。
+     */
     @PostMapping("/question/update")
     @ApiOperation("更新问题")
     ResultVO<QuestionVo> questionUpdate(@RequestBody QuestionVo questionVo) {
@@ -55,6 +60,13 @@ public class ExamController {
         }
     }
 
+    /**
+     * 创建问题。
+     *
+     * @param questionCreateSimplifyVo 简化的问题创建对象。
+     * @param request HTTP请求对象。
+     * @return 包含创建结果的结果对象。
+     */
     @PostMapping("/question/create")
     @ApiOperation("创建问题")
     ResultVO<String> questionCreate(@RequestBody QuestionCreateSimplifyVo questionCreateSimplifyVo, HttpServletRequest request) {
@@ -74,6 +86,11 @@ public class ExamController {
         }
     }
 
+    /**
+     * 获取问题分类的相关选项。
+     *
+     * @return 包含问题分类选项的结果对象。
+     */
     @GetMapping("/question/selection")
     @ApiOperation("获取问题分类的相关选项")
     ResultVO<QuestionSelectionVo> getSelections() {
@@ -85,6 +102,12 @@ public class ExamController {
         }
     }
 
+    /**
+     * 根据问题的id获取问题的详细信息。
+     *
+     * @param id 问题id。
+     * @return 包含问题详情的结果对象。
+     */
     @GetMapping("/question/detail/{id}")
     @ApiOperation("根据问题的id获取问题的详细信息")
     ResultVO<QuestionDetailVo> getQuestionDetail(@PathVariable String id) {
@@ -101,6 +124,11 @@ public class ExamController {
         return resultVO;
     }
 
+    /**
+     * 获取全部考试的列表。
+     *
+     * @return 包含全部考试列表的结果对象。
+     */
     @GetMapping("/all")
     @ApiOperation("获取全部考试的列表")
     ResultVO<List<ExamVo>> getExamAll() {
@@ -116,6 +144,12 @@ public class ExamController {
         return resultVO;
     }
 
+
+    /**
+     * 获取问题列表，按照单选、多选和判断题分类返回。
+     *
+     * @return 包含分类问题列表的结果对象。
+     */
     @GetMapping("/question/type/list")
     @ApiOperation("获取问题列表，按照单选、多选和判断题分类返回")
     ResultVO<ExamQuestionTypeVo> getExamQuestionTypeList() {
@@ -131,6 +165,12 @@ public class ExamController {
         return resultVO;
     }
 
+    /**
+     * 创建考试
+     * @param examCreateVo 考试创建对象。
+     * @param request HTTP请求对象。
+     * @return 包含创建考试结果的结果对象。
+     */
     @PostMapping("/create")
     @ApiOperation("创建考试")
     ResultVO<Exam> createExam(@RequestBody ExamCreateVo examCreateVo, HttpServletRequest request) {
@@ -147,6 +187,13 @@ public class ExamController {
         return resultVO;
     }
 
+    /**
+     * 更新考试。
+     *
+     * @param examVo 考试对象。
+     * @param request HTTP请求对象。
+     * @return 包含更新考试结果的结果对象。
+     */
     @PostMapping("/update")
     @ApiOperation("更新考试")
     ResultVO<Exam> updateExam(@RequestBody ExamVo examVo, HttpServletRequest request) {
@@ -163,6 +210,11 @@ public class ExamController {
         return resultVO;
     }
 
+    /**
+     * 获取考试列表，适配前端卡片列表。
+     *
+     * @return 包含考试列表卡片的结果对象。
+     */
     @GetMapping("/card/list")
     @ApiOperation("获取考试列表，适配前端卡片列表")
     ResultVO<List<ExamCardVo>> getExamCardList() {
@@ -178,6 +230,12 @@ public class ExamController {
         return resultVO;
     }
 
+    /**
+     * 根据考试的id获取考试详情。
+     *
+     * @param id 考试id。
+     * @return 包含考试详情的结果对象。
+     */
     @GetMapping("/detail/{id}")
     @ApiOperation("根据考试的id，获取考试详情")
     ResultVO<ExamDetailVo> getExamDetail(@PathVariable String id) {
@@ -192,6 +250,14 @@ public class ExamController {
         return resultVO;
     }
 
+    /**
+     * 根据用户提交的答案对指定id的考试判分。
+     *
+     * @param examId 考试id。
+     * @param answersMap 答案映射。
+     * @param request HTTP请求对象。
+     * @return 包含考试记录的结果对象。
+     */
     @PostMapping("/finish/{examId}")
     @ApiOperation("根据用户提交的答案对指定id的考试判分")
     ResultVO<ExamRecord> finishExam(@PathVariable String examId, @RequestBody HashMap<String, List<String>> answersMap, HttpServletRequest request) {
@@ -209,6 +275,12 @@ public class ExamController {
         return resultVO;
     }
 
+    /**
+     * 获取当前用户的考试记录。
+     *
+     * @param request HTTP请求对象。
+     * @return 包含考试记录列表的结果对象。
+     */
     @GetMapping("/record/list")
     @ApiOperation("获取当前用户的考试记录")
     ResultVO<List<ExamRecordVo>> getExamRecordList(HttpServletRequest request) {
@@ -226,6 +298,12 @@ public class ExamController {
         return resultVO;
     }
 
+    /**
+     * 根据考试记录id获取考试记录详情。
+     *
+     * @param recordId 考试记录id。
+     * @return 包含考试记录详情的结果对象。
+     */
     @GetMapping("/record/detail/{recordId}")
     @ApiOperation("根据考试记录id获取考试记录详情")
     ResultVO<RecordDetailVo> getExamRecordDetail(@PathVariable String recordId) {

@@ -1,8 +1,5 @@
 /***********************************************************
  * @Description : 登录拦截器，主要用于校验Token
- * @author      : 梁山广(Laing Shan Guang)
- * @date        : 2019-05-22 07:35
- * @email       : liangshanguang2@gmail.com
  ***********************************************************/
 package lsgwr.exam.interceptor;
 
@@ -18,11 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 
-/**
- * https://stackoverflow.com/questions/43591582/application-properties-value-in-spring-boot-interceptor
- *
- * @author liangshanguang
- */
 @Component
 public class LoginInterceptor implements HandlerInterceptor {
 

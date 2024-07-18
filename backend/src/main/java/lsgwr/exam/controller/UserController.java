@@ -31,22 +31,6 @@ public class UserController {
     @Autowired
     private JavaMailSender mailSender;
 
-//    @PostMapping("/register")
-//    @ApiOperation("注册")
-//    ResultVO<User> register(@RequestBody RegisterDTO registerDTO) {
-//        ResultVO<User> resultVO = new ResultVO<>();
-//        // 注册信息的完善，还有唯一性校验没(用户名、邮箱和手机号)已经在user表中通过unique来设置了
-//        User user = userService.register(registerDTO);
-//        if (user != null) {
-//            // 注册成功
-//            resultVO = new ResultVO<>(ResultEnum.REGISTER_SUCCESS.getCode(), ResultEnum.REGISTER_SUCCESS.getMessage(), user);
-//        } else {
-//            resultVO = new ResultVO<>(ResultEnum.REGISTER_FAILED.getCode(), ResultEnum.REGISTER_FAILED.getMessage(), null);
-//        }
-//        return resultVO;
-//    }
-
-
     @PostMapping("/register")
     @ApiOperation("注册")
     ResultVO<User> register(@RequestBody RegisterDTO registerDTO) {
@@ -150,9 +134,7 @@ public class UserController {
         // 处理验证码发送逻辑
         System.out.println("发送验证码到邮箱: " + request.getEmail());
         System.out.println("生成的验证码: " + request.getCode());
-        // 发送人的邮箱比如 155156641XX@163.com
         SimpleMailMessage message = new SimpleMailMessage();
-
         message.setFrom("1423562528@qq.com"); // 发送人的邮箱
         message.setSubject("在线考试系统验证码"); // 标题
         message.setTo(request.getEmail()); // 发给谁  对方邮箱
