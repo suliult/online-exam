@@ -44,9 +44,9 @@ public interface UserService {
      * @return 用户信息组装的实体
      */
     UserInfoVo getInfo(String userId);
-    List<User> getAllUsers();
-
-    User updateUser(String userId, User user);
-
-    void deleteUser(String userId);
+//    List<User> getAllUsers();
+//
+//    User updateUser(String userId, User user);
+//
+//    void deleteUser(String userId);
 }

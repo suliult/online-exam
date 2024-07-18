@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e7b16b9-5f2b-453e-a9a8-86ad095ca8c0" name="更改" comment="1">
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/dto/UserDTO.java" afterDir="false" />
+    <list default="true" id="6e7b16b9-5f2b-453e-a9a8-86ad095ca8c0" name="更改" comment="新增接口">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/controller/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/service/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/api/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/admin/admin.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/admin/admin.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/account/settings/BaseSetting.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/account/settings/BaseSetting.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,18 +28,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "suliult"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;suliult&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/suliult/online-exam.git",
-    "accountId": "a3417453-88a8-480f-9c8d-812e4802a310"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/suliult/online-exam.git&quot;,
+    &quot;accountId&quot;: &quot;a3417453-88a8-480f-9c8d-812e4802a310&quot;
   }
-}]]></component>
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -59,9 +58,10 @@
     "Maven.exam [clean].executor": "Run",
     "Maven.exam [install].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/Download/spring-boot-online-exam-master",
+    "last_opened_file_path": "D:/Download/spring-boot-online-exam-master/frontend/src/views/account/settings",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
     "node.js.detected.package.tslint": "true",
@@ -80,6 +80,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Download\spring-boot-online-exam-master\frontend\src\views\account\settings" />
       <recent name="D:\Download\spring-boot-online-exam-master\frontend\src\views\user" />
       <recent name="D:\Download\spring-boot-online-exam-master\frontend\src\views\list" />
     </key>
@@ -136,7 +137,9 @@
       <workItem from="1721117294835" duration="3832000" />
       <workItem from="1721177421976" duration="2688000" />
       <workItem from="1721180302999" duration="12699000" />
-      <workItem from="1721205431636" duration="5660000" />
+      <workItem from="1721205431636" duration="6900000" />
+      <workItem from="1721263305126" duration="15000" />
+      <workItem from="1721263764387" duration="2342000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <option name="closed" value="true" />
@@ -154,7 +157,23 @@
       <option name="project" value="LOCAL" />
       <updated>1721206727991</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="新增接口">
+      <option name="closed" value="true" />
+      <created>1721223264226</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1721223264226</updated>
+    </task>
+    <task id="LOCAL-00004" summary="新增接口">
+      <option name="closed" value="true" />
+      <created>1721223270411</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1721223270411</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -173,7 +192,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="1" />
-    <option name="LAST_COMMIT_MESSAGE" value="1" />
+    <MESSAGE value="新增接口" />
+    <option name="LAST_COMMIT_MESSAGE" value="新增接口" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
