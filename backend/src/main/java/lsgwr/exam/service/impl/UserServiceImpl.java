@@ -169,23 +169,23 @@ public class UserServiceImpl implements UserService {
     }
 
 
-//    @Override
-//    public List<User> getAllUsers() {
-//        return userRepository.findAll();
-//    }
-//
-//    @Override
-//    public User updateUser(String userId, User user) {
-//        User existingUser = userRepository.findById(userId).orElse(null);
-//        if (existingUser != null) {
-//            BeanUtils.copyProperties(user, existingUser, "userId", "userPassword", "createTime", "updateTime");
-//            return userRepository.save(existingUser);
-//        }
-//        return null;
-//    }
-//
-//    @Override
-//    public void deleteUser(String userId) {
-//        userRepository.deleteById(userId);
-//    }
+    @Override
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    @Override
+    public User updateUser(String userId, User user) {
+        User existingUser = userRepository.findById(userId).orElse(null);
+        if (existingUser != null) {
+            BeanUtils.copyProperties(user, existingUser, "userId", "userPassword", "createTime", "updateTime");
+            return userRepository.save(existingUser);
+        }
+        return null;
+    }
+
+    @Override
+    public void deleteUser(String userId) {
+        userRepository.deleteById(userId);
+    }
 }

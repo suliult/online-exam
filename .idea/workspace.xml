@@ -6,7 +6,96 @@
   <component name="ChangeListManager">
     <list default="true" id="6e7b16b9-5f2b-453e-a9a8-86ad095ca8c0" name="更改" comment="ok">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/AI/AskAI.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/AI/AskAI.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/images/拦截器注入配置文件属性.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/images/拦截器注入配置文件属性2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/config/CORSConf.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/config/CORSConf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/config/ChatGptConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/config/ChatGptConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/config/IntercepterConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/config/IntercepterConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/config/MailConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/config/MailConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/config/ServletConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/config/ServletConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/config/Swagger2Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/config/Swagger2Config.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/config/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/config/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/controller/ChatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/controller/ChatController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/controller/ExamController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/controller/ExamController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/controller/UploadDownloadController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/controller/UploadDownloadController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/controller/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/controller/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/dto/RegisterDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/dto/RegisterDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/dto/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/dto/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/entity/Action.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/entity/Action.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/entity/Exam.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/entity/Exam.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/entity/ExamRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/entity/ExamRecord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/entity/ExamRecordLevel.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/entity/ExamRecordLevel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/entity/Page.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/entity/Page.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/entity/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/entity/Question.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/entity/QuestionCategory.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/entity/QuestionCategory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/entity/QuestionLevel.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/entity/QuestionLevel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/entity/QuestionOption.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/entity/QuestionOption.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/entity/QuestionType.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/entity/QuestionType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/entity/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/entity/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/entity/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/entity/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/enums/LoginTypeEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/enums/LoginTypeEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/enums/QuestionEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/enums/QuestionEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/enums/RoleEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/enums/RoleEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/exception/ExamException.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/exception/ExamException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/exception/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/exception/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/interceptor/LoginInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/interceptor/LoginInterceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/qo/DownloadQo.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/qo/DownloadQo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/qo/LoginQo.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/qo/LoginQo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/qo/UploadModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/qo/UploadModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/qo/UploadModel2.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/qo/UploadModel2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/qo/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/qo/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/repository/ActionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/repository/ActionRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/repository/ExamRecordLevelRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/repository/ExamRecordLevelRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/repository/ExamRecordRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/repository/ExamRecordRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/repository/ExamRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/repository/ExamRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/repository/PageRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/repository/PageRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/repository/QuestionCategoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/repository/QuestionCategoryRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/repository/QuestionLevelRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/repository/QuestionLevelRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/repository/QuestionOptionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/repository/QuestionOptionRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/repository/QuestionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/repository/QuestionRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/repository/QuestionTypeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/repository/QuestionTypeRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/repository/RoleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/repository/RoleRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/repository/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/repository/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/service/ChatGptService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/service/ChatGptService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/service/ExamService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/service/ExamService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/service/impl/ExamServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/service/impl/ExamServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/service/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/service/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/utils/FileTransUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/utils/FileTransUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/utils/FileUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/utils/FileUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/utils/JwtUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/utils/JwtUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/utils/ResultVOUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/utils/ResultVOUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/utils/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/utils/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/vo/ActionVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/vo/ActionVo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/vo/ExamCardVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/vo/ExamCardVo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/vo/ExamCreateVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/vo/ExamCreateVo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/vo/ExamDetailVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/vo/ExamDetailVo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/vo/ExamPageVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/vo/ExamPageVo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/vo/ExamQuestionSelectVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/vo/ExamQuestionSelectVo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/vo/ExamQuestionTypeVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/vo/ExamQuestionTypeVo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/vo/ExamRecordVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/vo/ExamRecordVo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/vo/ExamVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/vo/ExamVo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/vo/JsonData.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/vo/JsonData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/vo/PageVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/vo/PageVo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/vo/QuestionCreateSimplifyVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/vo/QuestionCreateSimplifyVo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/vo/QuestionCreateVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/vo/QuestionCreateVo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/vo/QuestionDetailVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/vo/QuestionDetailVo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/vo/QuestionOptionCreateVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/vo/QuestionOptionCreateVo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/vo/QuestionOptionVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/vo/QuestionOptionVo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/vo/QuestionPageVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/vo/QuestionPageVo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/vo/QuestionSelectionVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/vo/QuestionSelectionVo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/vo/QuestionVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/vo/QuestionVo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/vo/RecordDetailVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/vo/RecordDetailVo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/vo/ResultVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/vo/ResultVO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/vo/RoleVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/vo/RoleVo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/vo/UserInfoVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/vo/UserInfoVo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/vo/UserVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/vo/UserVo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +126,9 @@
     &quot;accountId&quot;: &quot;a3417453-88a8-480f-9c8d-812e4802a310&quot;
   }
 }</component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -50,30 +142,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Maven.exam [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.exam [install].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Download/spring-boot-online-exam-master&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;模块&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files (x86)\\JetBrains\\IntelliJ IDEA 2024.1.4\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;,
-    &quot;应用程序.ExamApplication.executor&quot;: &quot;Run&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Maven.exam [clean].executor": "Run",
+    "Maven.exam [install].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/Download/spring-boot-online-exam-master",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "模块",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
+    "spring.configuration.checksum": "654816f85dfe2115674e7115c7d1ea51",
+    "ts.external.directory.path": "C:\\Program Files (x86)\\JetBrains\\IntelliJ IDEA 2024.1.4\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true",
+    "应用程序.ExamApplication.executor": "Run"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Download\spring-boot-online-exam-master\frontend\src\views\user" />
@@ -136,6 +231,8 @@
       <workItem from="1721180302999" duration="12699000" />
       <workItem from="1721205431636" duration="5660000" />
       <workItem from="1721285436545" duration="925000" />
+      <workItem from="1721288467104" duration="5861000" />
+      <workItem from="1721310751784" duration="2156000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <option name="closed" value="true" />

@@ -1,9 +1,3 @@
-/***********************************************************
- * @Description : Swagger2的配置
- * @author      : 梁山广(Laing Shan Guang)
- * @date        : 2019-05-15 07:39
- * @email       : liangshanguang2@gmail.com
- ***********************************************************/
 package lsgwr.exam.config;
 
 import org.springframework.context.annotation.Bean;
@@ -26,9 +20,13 @@ import java.util.List;
 @Configuration
 @EnableSwagger2
 public class Swagger2Config {
+    /**
+     * 配置Swagger2相关信息
+     * @return Docket对象
+     */
     @Bean
     public Docket api() {
-
+        // 添加全局参数
         ParameterBuilder ticketPar = new ParameterBuilder();
         List<Parameter> pars = new ArrayList<>();
         ticketPar.name("Access-Token").description("Rest接口权限认证token,无需鉴权可为空")
@@ -45,16 +43,21 @@ public class Swagger2Config {
                 .apis(RequestHandlerSelectors.basePackage("lsgwr"))
                 .paths(PathSelectors.any())
                 .build()
+                // 设置全局参数
                 .globalOperationParameters(pars);
     }
 
+    /**
+     * 构建API文档的详细信息函数
+     * @return ApiInfo
+     */
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("online exam by springboot")
                 .description("在线考试系统")
-                .termsOfServiceUrl("https://github.com/19920625lsg/spring-boot-online-exam")
+                .termsOfServiceUrl("https://github.com/suliult/online-exam")
                 .version("2.0")
-                .contact(new Contact("liangshanguang", "https://github.com/lsgwr/spring-boot-online-exam", "liangshanguang2@gmail.com"))
+                .contact(new Contact("liangshanguang", "https://github.com/suliult/online-exam", "2306934678@qq.com"))
                 .build();
     }
 }

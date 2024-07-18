@@ -27,18 +27,12 @@ interceptors:
 logging:
   level:
     org.hibernate.type.descriptor.sql.BasicBinder: off
-
+#SMTP服务器配置
 spring.mail.host: smtp.qq.com
-
 spring.mail.username: 1423562528@qq.com
-
 spring.mail.port: 587
-
 spring.mail.password: xbdlfjqlklbxhejg
-
 spring.mail.properties.mail.smtp.auth: true
-
 spring.mail.properties.mail.smtp.starttls.enable: true
-
 spring.mail.properties.mail.smtp.starttls.required: true
 
