@@ -18,17 +18,25 @@ import lsgwr.exam.repository.UserRepository;
 import lsgwr.exam.service.UserService;
 import lsgwr.exam.utils.JwtUtils;
 import lsgwr.exam.vo.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.BeanWrapper;
+import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
+
+    private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
     @Autowired
     UserRepository userRepository;
@@ -178,10 +186,49 @@ public class UserServiceImpl implements UserService {
     public User updateUser(String userId, User user) {
         User existingUser = userRepository.findById(userId).orElse(null);
         if (existingUser != null) {
-            BeanUtils.copyProperties(user, existingUser, "userId", "userPassword", "createTime", "updateTime");
+            // 只复制非空属性
+            BeanUtils.copyProperties(user, existingUser, getNullPropertyNames(user));
+
+            // 特殊处理密码字段
+            if (user.getUserPassword() != null && !user.getUserPassword().isEmpty()) {
+                existingUser.setUserPassword(Base64.encode(user.getUserPassword()));
+            }
+
+            // 确保不更新这些字段
+            existingUser.setUserId(userId);
+            existingUser.setCreateTime(existingUser.getCreateTime());
+            // updateTime 会由 @PreUpdate 自动更新
+
+            // 数据验证
+            if (!isValidUser(existingUser)) {
+                logger.error("Invalid user data for update: {}", userId);
+                throw new IllegalArgumentException("Invalid user data");
+            }
+
+            logger.info("Updating user: {}", userId);
             return userRepository.save(existingUser);
         }
+        logger.warn("User not found for update: {}", userId);
         return null;
+    }
+
+    private String[] getNullPropertyNames(Object source) {
+        final BeanWrapper src = new BeanWrapperImpl(source);
+        java.beans.PropertyDescriptor[] pds = src.getPropertyDescriptors();
+
+        Set<String> emptyNames = new HashSet<>();
+        for (java.beans.PropertyDescriptor pd : pds) {
+            Object srcValue = src.getPropertyValue(pd.getName());
+            if (srcValue == null) emptyNames.add(pd.getName());
+        }
+        String[] result = new String[emptyNames.size()];
+        return emptyNames.toArray(result);
+    }
+
+    private boolean isValidUser(User user) {
+        // 添加必要的验证逻辑
+        return user.getUserUsername() != null && !user.getUserUsername().isEmpty()
+                && user.getUserEmail() != null && !user.getUserEmail().isEmpty();
     }
 
     @Override
