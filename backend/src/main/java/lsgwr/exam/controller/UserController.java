@@ -113,26 +113,26 @@ public class UserController {
         return new ResultVO<>(ResultEnum.GET_INFO_SUCCESS.getCode(), ResultEnum.GET_INFO_SUCCESS.getMessage(), userInfoVo);
     }
 
-//    @GetMapping
-//    @ApiOperation("获取所有用户")
-//    public ResultVO<List<User>> getAllUsers() {
-//        List<User> users = userService.getAllUsers();
-//        return new ResultVO<>(ResultEnum.GET_INFO_SUCCESS.getCode(), ResultEnum.GET_INFO_SUCCESS.getMessage(), users);
-//    }
-//
-//    @PutMapping("/{id}")
-//    @ApiOperation("更新用户信息")
-//    public ResultVO<User> updateUser(@PathVariable String id, @RequestBody User user) {
-//        User updatedUser = userService.updateUser(id, user);
-//        return new ResultVO<>(ResultEnum.GET_INFO_SUCCESS.getCode(), ResultEnum.GET_INFO_SUCCESS.getMessage(), updatedUser);
-//    }
-//
-//    @DeleteMapping("/{id}")
-//    @ApiOperation("删除用户")
-//    public ResultVO<Void> deleteUser(@PathVariable String id) {
-//        userService.deleteUser(id);
-//        return new ResultVO<>(ResultEnum.GET_INFO_SUCCESS.getCode(), ResultEnum.GET_INFO_SUCCESS.getMessage(), null);
-//    }
+    @GetMapping
+    @ApiOperation("获取所有用户")
+    public ResultVO<List<User>> getAllUsers() {
+        List<User> users = userService.getAllUsers();
+        return new ResultVO<>(ResultEnum.GET_INFO_SUCCESS.getCode(), ResultEnum.GET_INFO_SUCCESS.getMessage(), users);
+    }
+
+    @PutMapping("/{id}")
+    @ApiOperation("更新用户信息")
+    public ResultVO<User> updateUser(@PathVariable String id, @RequestBody User user) {
+        User updatedUser = userService.updateUser(id, user);
+        return new ResultVO<>(ResultEnum.GET_INFO_SUCCESS.getCode(), ResultEnum.GET_INFO_SUCCESS.getMessage(), updatedUser);
+    }
+
+    @DeleteMapping("/{id}")
+    @ApiOperation("删除用户")
+    public ResultVO<Void> deleteUser(@PathVariable String id) {
+        userService.deleteUser(id);
+        return new ResultVO<>(ResultEnum.GET_INFO_SUCCESS.getCode(), ResultEnum.GET_INFO_SUCCESS.getMessage(), null);
+    }
 
 
     @GetMapping("/test")

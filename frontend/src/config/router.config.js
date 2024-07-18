@@ -114,25 +114,40 @@ export const asyncRouterMap = [
       },
       {
         path: '/admin',
-        component: RouteView,
-        redirect: '/admin',
-        alwaysShow: true,
-        name: 'Admin',
-        meta: { title: '用户管理', icon: 'setting', permission: ['admin'] },
+        name: 'admin',
+        component: PageView,
+        hideChildrenInMenu: true,
+        meta: { title: '用户管理', keepAlive: true, icon: 'setting', permission: ['admin'] },
         children: [
           {
-            path: '/admin/student_admin',
+            path: '/admin',
             name: 'StudentManagement',
             component: () => import('../views/admin/admin.vue'),
-            meta: { title: '学生管理' }
+            meta: { title: '用户管理' }
           }
-          // {
-          //   path: '/admin/teacher_admin',
-          //   name: 'TeacherManagement',
-          //   meta: { title: '教师管理' }
-          // }
         ]
       },
+      // {
+      //   path: '/admin',
+      //   component: PageView,
+      //   redirect: '/admin',
+      //   alwaysShow: true,
+      //   name: 'Admin',
+      //   meta: { title: '用户管理', icon: 'setting', permission: ['admin'] },
+      //   children: [
+      //     {
+      //       path: '/admin/student_admin',
+      //       name: 'StudentManagement',
+      //       component: () => import('../views/admin/admin.vue'),
+      //       meta: { title: '学生管理' }
+      //     }
+      //     // {
+      //     //   path: '/admin/teacher_admin',
+      //     //   name: 'TeacherManagement',
+      //     //   meta: { title: '教师管理' }
+      //     // }
+      //   ]
+      // },
       // account
       {
         path: '/account',

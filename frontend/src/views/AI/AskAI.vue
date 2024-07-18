@@ -18,11 +18,14 @@
     <div class="main-chat">
       <div class="chat-header">
         <h2>{{ currentChat.title }}</h2>
-        <a-select v-model="selectedModel" style="width: 120px">
-          <a-select-option v-for="model in availableModels" :key="model.value" :value="model.value">
-            {{ model.label }}
-          </a-select-option>
-        </a-select>
+        <div class="model-selection">
+          <a-select v-model="selectedModel" style="width: 150px" @change="handleModelChange">
+            <a-select-option v-for="model in availableModels" :key="model.value" :value="model.value">
+              {{ model.label }}
+            </a-select-option>
+          </a-select>
+          <a-input v-if="selectedModel === 'custom'" v-model="customModel" placeholder="输入自定义模型名称" style="width: 200px; margin-left: 10px;" />
+        </div>
       </div>
       <div ref="chatBody" class="chat-body">
         <div v-for="(message, index) in currentChat.messages" :key="index" :class="['message', message.role]">
@@ -30,7 +33,15 @@
             <a-avatar :src="message.role === 'user' ? userAvatar : assistantAvatar" />
           </div>
           <div class="content">
-            <vue-markdown v-if="message.role === 'assistant'" :source="message.content"></vue-markdown>
+            <vue-markdown
+              v-if="message.role === 'assistant'"
+              :source="message.content"
+              :breaks="true"
+              :html="true"
+              :linkify="true"
+              :emoji="true"
+              :typographer="true"
+              :highlight="highlightCode"></vue-markdown>
             <div v-else>{{ message.content }}</div>
             <div class="message-actions">
               <a-button v-if="message.role === 'assistant'" size="small" @click="regenerateMessage(index)">重新生成</a-button>
@@ -43,12 +54,12 @@
         </div>
       </div>
       <div class="chat-input">
-        <a-input
+        <a-textarea
           v-model="inputMessage"
           placeholder="输入消息..."
+          :auto-size="{ minRows: 1, maxRows: 5 }"
           @pressEnter="handleEnter"
           :disabled="isLoading"
-          autoSize
         />
         <a-button @click="sendMessage" type="primary" :loading="isLoading" icon="send">发送</a-button>
       </div>
@@ -68,6 +79,7 @@ export default {
   name: 'ChatInterface',
   components: {
     AInput: Input,
+    ATextarea: Input.TextArea,
     AButton: Button,
     ASelect: Select,
     ASelectOption: Select.Option,
@@ -84,9 +96,17 @@ export default {
       isLoading: false,
       selectedModel: 'gpt-3.5-turbo',
       availableModels: [
-        { value: 'gpt-3.5-turbo', label: 'GPT-3.5' },
-        { value: 'gpt-4', label: 'GPT-4' }
+        { value: 'gpt-3.5-turbo', label: 'GPT-3.5 Turbo' },
+        { value: 'gpt-4', label: 'GPT-4' },
+        { value: 'gpt-4o', label: 'GPT-4o' },
+        { value: 'claude-3-5-sonnet-20240620', label: 'claude-3-5-sonnet-20240620' },
+        { value: 'claude-3-opus-20240229', label: 'claude-3-opus-20240229' },
+        { value: 'gemini-1.5-flash', label: 'gemini-1.5-flash' },
+        { value: 'gemma-7b-it', label: 'gemma-7b-it' },
+        { value: 'moonshot-v1-8k', label: 'moonshot-v1-8k' },
+        { value: 'custom', label: '自定义模型' }
       ],
+      customModel: '',
       userAvatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
       assistantAvatar: 'https://www.gstatic.com/lamda/images/sparkle_resting_v2_1ff6f6a71f2d298b1a31.gif'
     }
@@ -120,11 +140,10 @@ export default {
       this.saveChatsToStorage()
     },
     handleEnter (e) {
-      if (e.ctrlKey || e.shiftKey) {
-        return
+      if (e.ctrlKey) {
+        e.preventDefault()
+        this.sendMessage()
       }
-      e.preventDefault()
-      this.sendMessage()
     },
     async sendMessage () {
       if (!this.inputMessage.trim()) {
@@ -166,8 +185,9 @@ export default {
     },
     async getAnswer (messages) {
       try {
+        const modelToUse = this.selectedModel === 'custom' ? this.customModel : this.selectedModel
         const response = await chatWithGpt({
-          model: this.selectedModel,
+          model: modelToUse,
           messages: messages
         })
         console.log('API Response:', response)
@@ -235,12 +255,11 @@ export default {
       link.click()
       URL.revokeObjectURL(url)
     },
-    highlightCode () {
-      this.$nextTick(() => {
-        document.querySelectorAll('pre code').forEach((block) => {
-          hljs.highlightBlock(block)
-        })
-      })
+    highlightCode (code, lang) {
+      if (lang && hljs.getLanguage(lang)) {
+        return hljs.highlight(lang, code, true).value
+      }
+      return hljs.highlightAuto(code).value
     },
     async retryMessage (index) {
       const messagesToRetry = this.currentChat.messages.slice(0, index)
@@ -313,6 +332,11 @@ export default {
       } finally {
         this.saveChatsToStorage()
       }
+    },
+    handleModelChange (value) {
+      if (value !== 'custom') {
+        this.customModel = ''
+      }
     }
   },
   watch: {
@@ -330,49 +354,53 @@ export default {
 .chat-container {
   display: flex;
   height: 100vh;
+  overflow: hidden;
 }
 
 .sidebar {
   width: 250px;
-  background: #f0f0f0;
+  background-color: #f0f2f5;
+  padding: 20px;
   overflow-y: auto;
-  border-right: 1px solid #d9d9d9;
-}
-
-.chat-list .active-chat {
-  background: #e6f7ff;
-}
-
-.chat-list > div {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  cursor: pointer;
-  border-bottom: 1px solid #d9d9d9;
 }
 
 .main-chat {
   flex: 1;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .chat-header {
+  padding: 20px;
+  background-color: #fff;
+  border-bottom: 1px solid #e8e8e8;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px;
-  background: #fafafa;
-  border-bottom: 1px solid #d9d9d9;
 }
 
 .chat-body {
   flex: 1;
-  padding: 20px;
   overflow-y: auto;
-  background: #fff;
-  position: relative;
+  padding: 20px;
+}
+
+.chat-input {
+  padding: 20px;
+  background-color: #fff;
+  border-top: 1px solid #e8e8e8;
+  display: flex;
+  align-items: flex-end;
+}
+
+.chat-input .ant-input {
+  flex: 1;
+  margin-right: 10px;
+  resize: none;
+  min-height: 40px;
+  max-height: 120px;
+  overflow-y: auto;
 }
 
 .message {
@@ -380,46 +408,90 @@ export default {
   margin-bottom: 20px;
 }
 
-.message.user .content {
-  background: #e6f7ff;
-  border-radius: 10px 10px 0 10px;
-  padding: 10px;
-}
+  .message .avatar {
+    margin-right: 10px;
+  }
 
-.message.assistant .content {
-  background: #f6f6f6;
-  border-radius: 10px 10px 10px 0;
-  padding: 10px;
-}
+  .message .content {
+    max-width: 70%;
+    padding: 10px 15px;
+    border-radius: 18px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
 
-.avatar {
-  margin-right: 10px;
-}
+  .message.user .content {
+    background-color: #1890ff;
+    color: #fff;
+    margin-left: auto;
+    border-radius: 18px 0 18px 18px;
+  }
 
-.message .content {
-  flex: 1;
-}
+  .message.assistant .content {
+    background-color: #f0f2f5;
+    border-radius: 0 18px 18px 18px;
+  }
 
-.message-actions {
-  margin-top: 10px;
-}
+  .message .content :deep(pre) {
+    background-color: #282c34;
+    border-radius: 6px;
+    padding: 12px;
+    overflow-x: auto;
+  }
 
-.message-actions .ant-btn {
-  margin-right: 10px;
-}
+  .message .content :deep(code) {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9em;
+  }
 
-.chat-input {
-  display: flex;
-  padding: 15px;
-  border-top: 1px solid #d9d9d9;
-  background: #fafafa;
-}
+  .message.user .content :deep(pre),
+  .message.user .content :deep(code) {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+  }
 
-.loading {
-  position: absolute;
-  bottom: 20px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
+  .chat-list > div {
+    padding: 10px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+
+  .chat-list > div:hover {
+    background-color: #e6f7ff;
+  }
+
+  .chat-list > div.active-chat {
+    background-color: #1890ff;
+    color: #fff;
+  }
+
+  .message-actions {
+    margin-top: 10px;
+  }
+
+  .message-actions .ant-btn {
+    margin-right: 10px;
+  }
+
+  .model-selection {
+    display: flex;
+    align-items: center;
+  }
+
+  @media (max-width: 768px) {
+    .chat-container {
+      flex-direction: column;
+    }
+
+    .sidebar {
+      width: 100%;
+      height: auto;
+      max-height: 30vh;
+    }
+
+    .main-chat {
+      height: 70vh;
+    }
+  }
 </style>
