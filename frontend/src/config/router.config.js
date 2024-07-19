@@ -2,8 +2,8 @@
 import { UserLayout, BasicLayout, RouteView, BlankLayout, PageView } from '../layouts'
 import { examList, examAdmin, questionAdmin } from '../core/icons'
 
+// 异步路由配置
 export const asyncRouterMap = [
-
   {
     path: '/',
     name: 'index',
@@ -11,7 +11,7 @@ export const asyncRouterMap = [
     meta: { title: '在线考试系统' },
     redirect: '/dashboard/home',
     children: [
-      // dashboard
+      // 首页路由
       {
         path: '/dashboard',
         name: 'dashboard',
@@ -29,6 +29,7 @@ export const asyncRouterMap = [
         ]
       },
 
+      // 考试卡片路由
       {
         path: '/exam-card',
         name: 'exam-card',
@@ -45,6 +46,8 @@ export const asyncRouterMap = [
           }
         ]
       },
+
+      // 问题管理路由
       {
         path: '/question-admin',
         name: 'question-admin',
@@ -56,13 +59,14 @@ export const asyncRouterMap = [
           {
             path: '/list/question-table-list',
             name: 'QuestionTableListWrapper',
-            hideChildrenInMenu: true, // 强制显示 MenuItem 而不是 SubMenu
+            hideChildrenInMenu: true,
             component: () => import('../views/list/QuestionTableList'),
             meta: { title: '问题列表', keepAlive: true, permission: ['question-admin'] }
           }
         ]
       },
-      // list
+
+      // 考试管理路由
       {
         path: '/list/exam-table-list',
         name: 'exam-table-list',
@@ -74,12 +78,14 @@ export const asyncRouterMap = [
           {
             path: '/list/exam-table-list',
             name: 'ExamTableListWrapper',
-            hideChildrenInMenu: true, // 强制显示 MenuItem 而不是 SubMenu
+            hideChildrenInMenu: true,
             component: () => import('../views/list/ExamTableList'),
             meta: { title: '考试列表', keepAlive: true, permission: ['exam-table-list'] }
           }
         ]
       },
+
+      // 我的考试路由
       {
         path: '/exam-record-list',
         name: 'exam-record-list',
@@ -96,7 +102,8 @@ export const asyncRouterMap = [
           }
         ]
       },
-      // 新增的"问问AI"路由，作为顶级菜单项
+
+      // 问问AI路由
       {
         path: '/ask-ai',
         name: 'ask-ai',
@@ -112,49 +119,30 @@ export const asyncRouterMap = [
           }
         ]
       },
+
+      // 用户管理路由
       {
         path: '/admin',
-        name: 'admin',
+        name: 'Admin',
         component: PageView,
         hideChildrenInMenu: true,
-        meta: { title: '用户管理', keepAlive: true, icon: 'setting', permission: ['admin'] },
+        meta: { title: '用户管理', icon: 'setting', permission: ['admin'] },
         children: [
           {
             path: '/admin',
-            name: 'StudentManagement',
+            name: 'Admin',
             component: () => import('../views/admin/admin.vue'),
             meta: { title: '用户管理' }
           }
         ]
       },
-      // {
-      //   path: '/admin',
-      //   component: PageView,
-      //   redirect: '/admin',
-      //   alwaysShow: true,
-      //   name: 'Admin',
-      //   meta: { title: '用户管理', icon: 'setting', permission: ['admin'] },
-      //   children: [
-      //     {
-      //       path: '/admin/student_admin',
-      //       name: 'StudentManagement',
-      //       component: () => import('../views/admin/admin.vue'),
-      //       meta: { title: '学生管理' }
-      //     }
-      //     // {
-      //     //   path: '/admin/teacher_admin',
-      //     //   name: 'TeacherManagement',
-      //     //   meta: { title: '教师管理' }
-      //     // }
-      //   ]
-      // },
-      // account
+
+      // 个人页路由（隐藏）
       {
         path: '/account',
         component: RouteView,
         redirect: '/account/center',
         name: 'account',
-        // 隐藏当前菜单，但是因为是需要的，所以不能删掉
         hidden: true,
         meta: { title: '个人页', icon: 'user', keepAlive: true, permission: ['user'] },
         children: [
@@ -185,8 +173,8 @@ export const asyncRouterMap = [
     ]
   },
 
+  // 404路由
   {
-    // 所有访问不到的路径最终都会落到404里
     path: '*', redirect: '/404', hidden: true
   }
 ]
@@ -196,6 +184,7 @@ export const asyncRouterMap = [
  * @type { *[] }
  */
 export const constantRouterMap = [
+  // 用户相关路由（登录、注册等）
   {
     path: '/user',
     component: UserLayout,
@@ -220,6 +209,7 @@ export const constantRouterMap = [
     ]
   },
 
+  // 测试相关路由
   {
     path: '/test',
     component: BlankLayout,
@@ -243,14 +233,19 @@ export const constantRouterMap = [
     ]
   },
 
+  // 404页面路由
   {
     path: '/404',
     component: () => import(/* webpackChunkName: "fail" */ '../views/exception/404')
   },
+
+  // 考试详情路由
   {
     path: '/exam/:id',
     component: () => import(/* webpackChunkName: "fail" */ '../views/list/ExamDetail')
   },
+
+  // 考试记录详情路由
   {
     path: '/exam/record/:exam_id/:record_id',
     component: () => import(/* webpackChunkName: "fail" */ '../views/list/ExamRecordDetail')

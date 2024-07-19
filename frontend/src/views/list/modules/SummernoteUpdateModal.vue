@@ -1,8 +1,12 @@
 <template>
   <a-modal :title="title" :width="600" :visible="visible" :confirmLoading="confirmLoading" @cancel="handleCancel">
+    <!-- 富文本编辑器容器 -->
     <div :id="divId"></div>
+    <!-- 自定义模态框底部按钮 -->
     <template slot="footer">
+      <!-- 完成按钮 -->
       <a-button key="update" @click="handleUpdate">完成</a-button>
+      <!-- 关闭按钮 -->
       <a-button key="cancel" @click="handleCancel">关闭</a-button>
     </template>
   </a-modal>

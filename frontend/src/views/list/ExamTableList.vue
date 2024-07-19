@@ -1,20 +1,30 @@
 <template>
   <a-card :bordered="false">
+    <!-- 工具栏 -->
     <div id="toolbar">
+      <!-- 新建考试按钮 -->
       <a-button type="primary" icon="plus" @click="$refs.createExamModal.create()">新建</a-button>&nbsp;
+      <!-- 刷新数据按钮 -->
       <a-button type="primary" icon="reload" @click="loadAll()">刷新</a-button>
     </div>
+
+    <!-- 考试列表表格 -->
     <BootstrapTable
       ref="table"
       :columns="columns"
       :data="tableData"
       :options="options"
     />
-    <!-- ref是为了方便用this.$refs.modal直接引用，下同 -->
+
+    <!-- 新建考试的模态框组件 -->
+    <!-- ref用于在Vue实例中通过this.$refs.createExamModal直接访问该组件 -->
     <step-by-step-exam-modal ref="createExamModal" @ok="handleOk" />
-    <!-- 这里的详情需要传进去  -->
+
+    <!-- 编辑考试的模态框组件 -->
+    <!-- 需要传入考试详情数据 -->
     <exam-edit-modal ref="editExamModal" @ok="handleOk" />
-    <!--  更新考试封面图片  -->
+
+    <!-- 更新考试封面图片的模态框组件 -->
     <update-avatar-modal ref="updateAvatarModal" @ok="handleOk" />
   </a-card>
 </template>

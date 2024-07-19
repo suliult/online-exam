@@ -3,7 +3,9 @@ import { login, getInfo, logout } from '../../api/login'
 import { ACCESS_TOKEN } from '../../store/mutation-types'
 import { welcome } from '../../utils/util'
 
+// 用户模块的 Vuex store
 const user = {
+  // 状态
   state: {
     token: '',
     name: '',
@@ -13,6 +15,7 @@ const user = {
     info: {}
   },
 
+  // 修改状态的方法
   mutations: {
     SET_TOKEN: (state, token) => {
       state.token = token
@@ -32,6 +35,7 @@ const user = {
     }
   },
 
+  // 异步操作
   actions: {
     // 登录
     Login ({ commit }, userInfo) {
@@ -39,13 +43,12 @@ const user = {
         login(userInfo).then(response => {
           if (response.code === 0) {
             const token = response.data
-            // 把接口返回的token字段的值设置到localStorage的token键值对中，token的有效期是1天,Vue.ls中的ls是localStorage的意思
+            // 将 token 存储到 localStorage，有效期为 1 天
             Vue.ls.set(ACCESS_TOKEN, token, 24 * 60 * 60 * 1000)
-            // 设置token事件,修改全局变量state中的token值，讲mutations中的SET_TOKEN事件
+            // 更新 store 中的 token
             commit('SET_TOKEN', token)
             resolve()
           } else {
-            // 自定义错误
             reject(new Error('用户名或密码错误'))
           }
         }).catch(error => {
@@ -61,33 +64,29 @@ const user = {
         getInfo().then(response => {
           console.log('/user/info的响应如下：')
           console.log(response)
-          const result = response.data // 取出响应体
+          const result = response.data
 
-          if (result.role && result.role.permissions.length > 0) { // 如果权限
+          if (result.role && result.role.permissions.length > 0) {
             const role = result.role
-            role.permissions = result.role.permissions // permissions是给页面行为设置权限
+            role.permissions = result.role.permissions
+            // 处理权限数据
             role.permissions.map(per => {
               if (per.actionEntitySet != null && per.actionEntitySet.length > 0) {
-                const action = per.actionEntitySet.map(action => {
-                  return action.action
-                })
+                const action = per.actionEntitySet.map(action => action.action)
                 per.actionList = action
               }
             })
-            role.permissionList = role.permissions.map(permission => { // permissionList是从permissions中遍历解析得来的
-              return permission.permissionId
-            })
+            // 生成权限 ID 列表
+            role.permissionList = role.permissions.map(permission => permission.permissionId)
 
-            // 这些设置都在Vuex的getters里面了
-            commit('SET_ROLES', result.role) // 在store中设置用户的权限
-            commit('SET_INFO', result) // 在store中设置用户信息
+            commit('SET_ROLES', result.role)
+            commit('SET_INFO', result)
           } else {
             reject(new Error('getInfo: roles must be a non-null array !'))
           }
 
-          // 这些设置都在Vuex的getters里面了
-          commit('SET_NAME', { name: result.name, welcome: welcome() }) // 设置用户名称
-          commit('SET_AVATAR', result.avatar) // 设置用户头像
+          commit('SET_NAME', { name: result.name, welcome: welcome() })
+          commit('SET_AVATAR', result.avatar)
 
           resolve(response)
         }).catch(error => {
@@ -99,10 +98,13 @@ const user = {
     // 登出
     Logout ({ commit, state }) {
       return new Promise((resolve) => {
+        // 清除 store 中的用户信息
         commit('SET_TOKEN', '')
         commit('SET_ROLES', [])
+        // 从 localStorage 中移除 token
         Vue.ls.remove(ACCESS_TOKEN)
 
+        // 调用登出 API
         logout(state.token).then(() => {
           resolve()
         }).catch(() => {
@@ -110,7 +112,6 @@ const user = {
         })
       })
     }
-
   }
 }
 

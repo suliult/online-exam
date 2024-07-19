@@ -4,14 +4,159 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e7b16b9-5f2b-453e-a9a8-86ad095ca8c0" name="更改" comment="ok">
+    <list default="true" id="6e7b16b9-5f2b-453e-a9a8-86ad095ca8c0" name="更改" comment="q">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/service/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/exception/ExamException.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/lsgwr/exam/exception/ExamException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/.editorconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/.env" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/.prettierrc" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/.prettierrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/.travis.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/babel.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/babel.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/docs/add-page-loading-animate.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/docs/load-on-demand.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/docs/multi-tabs.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/docs/webpack-bundle-analyzer.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/jest.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/jest.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/jsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/jsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/public/color.less" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/public/color.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/public/home/cover1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/public/home/cover2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/public/home/cover3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/public/home/cover4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/public/home/cover5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/public/loading/option2/html_code_segment.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/public/loading/option2/html_code_segment.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/api/chat.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/chat.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/api/exam.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/exam.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/api/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/api/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/api/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/DescriptionList/DescriptionList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/DescriptionList/DescriptionList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/DescriptionList/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/DescriptionList/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Exception/ExceptionPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Exception/ExceptionPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Exception/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Exception/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Exception/type.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Exception/type.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/GlobalFooter/GlobalFooter.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/GlobalFooter/GlobalFooter.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/GlobalFooter/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/GlobalFooter/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/GlobalHeader/GlobalHeader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/GlobalHeader/GlobalHeader.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/GlobalHeader/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/GlobalHeader/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Menu/SideMenu.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Menu/SideMenu.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Menu/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Menu/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Menu/menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Menu/menu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Menu/menu.render.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Menu/menu.render.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/MultiTab/MultiTab.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/MultiTab/MultiTab.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/MultiTab/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/MultiTab/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/MultiTab/index.less" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/MultiTab/index.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/NoticeIcon/NoticeIcon.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/NoticeIcon/NoticeIcon.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/NoticeIcon/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/NoticeIcon/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/PageHeader/PageHeader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/PageHeader/PageHeader.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/PageHeader/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/PageHeader/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/PageLoading/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/PageLoading/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Result/Result.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Result/Result.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Result/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Result/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/SettingDrawer/SettingDrawer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/SettingDrawer/SettingDrawer.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/SettingDrawer/SettingItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/SettingDrawer/SettingItem.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/SettingDrawer/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/SettingDrawer/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/SettingDrawer/settingConfig.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/SettingDrawer/settingConfig.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/StandardFormRow/StandardFormRow.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/StandardFormRow/StandardFormRow.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/StandardFormRow/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/StandardFormRow/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Table/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Table/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Table/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/TagSelect/TagSelectOption.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/TagSelect/TagSelectOption.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/TagSelect/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/TagSelect/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/_util/util.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/_util/util.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/global.less" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/global.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/index.less" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/index.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/tools/Breadcrumb.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/tools/Breadcrumb.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/tools/DetailList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/tools/DetailList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/tools/HeadInfo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/tools/HeadInfo.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/tools/Logo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/tools/Logo.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/tools/TwoStepCaptcha.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/tools/TwoStepCaptcha.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/tools/UserMenu.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/tools/UserMenu.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/config/defaultSettings.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/config/defaultSettings.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/config/router.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/config/router.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/core/bootstrap.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/core/bootstrap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/core/directives/action.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/core/directives/action.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/core/icons.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/core/icons.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/core/lazy_lib/components_use.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/core/lazy_lib/components_use.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/core/lazy_use.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/core/lazy_use.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/core/use.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/core/use.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/layouts/BasicLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/layouts/BasicLayout.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/layouts/BlankLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/layouts/BlankLayout.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/layouts/PageView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/layouts/PageView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/layouts/RouteView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/layouts/RouteView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/layouts/UserLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/layouts/UserLayout.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/layouts/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/layouts/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/permission.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/permission.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/plugins/bootstrap-table.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/plugins/bootstrap-table.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/plugins/summernote.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/plugins/summernote.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/router/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/store/getters.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/store/getters.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/store/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/store/modules/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/store/modules/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/store/modules/permission.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/store/modules/permission.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/store/modules/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/store/modules/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/store/mutation-types.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/store/mutation-types.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/utils/axios.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/utils/axios.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/utils/device.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/utils/device.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/utils/domUtil.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/utils/domUtil.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/utils/filter.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/utils/filter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/utils/helper/permission.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/utils/helper/permission.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/utils/mixin.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/utils/mixin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/utils/permissions.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/utils/permissions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/utils/request.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/utils/request.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/utils/storage.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/utils/storage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/utils/util.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/utils/util.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/utils/utils.less" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/utils/utils.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/404.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/404.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/views/AI/AskAI.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/AI/AskAI.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/Home.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/account/settings/AvatarModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/account/settings/AvatarModal.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/views/account/settings/BaseSetting.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/account/settings/BaseSetting.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/account/settings/Custom.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/account/settings/Custom.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/account/settings/Index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/account/settings/Index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/admin/admin.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/admin/admin.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/dashboard/Workplace.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/dashboard/Workplace.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/exception/403.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/exception/403.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/exception/404.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/exception/404.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/exception/500.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/exception/500.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/home/Banner.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/home/Banner.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/home/List.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/home/List.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/home/ListItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/home/ListItem.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/home/Page1.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/home/Page1.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/home/default.less" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/home/default.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/home/home.less" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/home/home.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/list/ExamCardList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/list/ExamCardList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/list/ExamDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/list/ExamDetail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/list/ExamRecordDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/list/ExamRecordDetail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/list/ExamRecordList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/list/ExamRecordList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/list/ExamTableList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/list/ExamTableList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/list/QuestionTableList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/list/QuestionTableList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/list/modules/CreateForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/list/modules/CreateForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/list/modules/ExamEditModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/list/modules/ExamEditModal.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/list/modules/QuestionEditModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/list/modules/QuestionEditModal.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/list/modules/QuestionViewModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/list/modules/QuestionViewModal.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/list/modules/StepByStepExamModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/list/modules/StepByStepExamModal.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/list/modules/StepByStepModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/list/modules/StepByStepModal.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/list/modules/StepByStepQuestionModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/list/modules/StepByStepQuestionModal.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/list/modules/SummernoteUpdateModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/list/modules/SummernoteUpdateModal.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/list/modules/UpdateAvatarModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/list/modules/UpdateAvatarModal.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/test/BootStrapTableDemo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/test/BootStrapTableDemo.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/test/SummerNoteDemo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/test/SummerNoteDemo.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/user/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/user/Login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/user/Register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/user/Register.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/user/RegisterResult.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/user/RegisterResult.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/tests/unit/.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/tests/unit/.eslintrc.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/vue.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/vue.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/webstorm.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/webstorm.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +224,7 @@
     "vue.rearranger.settings.migration": "true",
     "应用程序.ExamApplication.executor": "Run"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Download\spring-boot-online-exam-master\frontend\src\views\user" />
@@ -143,6 +288,7 @@
       <workItem from="1721205431636" duration="5660000" />
       <workItem from="1721285436545" duration="925000" />
       <workItem from="1721304584719" duration="3238000" />
+      <workItem from="1721364279488" duration="668000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <option name="closed" value="true" />
@@ -197,7 +343,9 @@
     <MESSAGE value="1" />
     <MESSAGE value="ok" />
     <MESSAGE value="gg" />
-    <option name="LAST_COMMIT_MESSAGE" value="gg" />
+    <MESSAGE value="再次修改" />
+    <MESSAGE value="q" />
+    <option name="LAST_COMMIT_MESSAGE" value="q" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

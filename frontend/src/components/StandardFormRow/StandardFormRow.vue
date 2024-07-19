@@ -1,13 +1,19 @@
 <template>
   <div :class="[prefixCls, lastCls, blockCls, gridCls]">
+    <!-- 主容器，应用动态类名 -->
+
+    <!-- 标题部分，仅在提供 title 时显示 -->
     <div v-if="title" class="antd-pro-components-standard-form-row-index-label">
       <span>{{ title }}</span>
     </div>
+
+    <!-- 内容部分，用于放置子元素 -->
     <div class="antd-pro-components-standard-form-row-index-content">
       <slot></slot>
     </div>
   </div>
 </template>
+
 
 <script>
 const classes = [
@@ -16,38 +22,49 @@ const classes = [
   'antd-pro-components-standard-form-row-index-standardFormRowLast'
 ]
 export default {
-  name: 'StandardFormRow',
+  name: 'StandardFormRow', // 组件名称
   props: {
+    // 组件的属性定义
     prefixCls: {
       type: String,
       default: 'antd-pro-components-standard-form-row-index-standardFormRow'
+      // 默认的CSS类名前缀
     },
     title: {
       type: String,
       default: undefined
+      // 表单行的标题，可选
     },
     last: {
       type: Boolean
+      // 是否为最后一行，影响样式
     },
     block: {
       type: Boolean
+      // 是否为块级元素，影响样式
     },
     grid: {
       type: Boolean
+      // 是否使用网格布局，影响样式
     }
   },
   computed: {
+    // 计算属性，用于动态生成CSS类名
     lastCls () {
+      // 如果是最后一行，返回对应的CSS类名
       return this.last ? classes[2] : null
     },
     blockCls () {
+      // 如果是块级元素，返回对应的CSS类名
       return this.block ? classes[0] : null
     },
     gridCls () {
+      // 如果使用网格布局，返回对应的CSS类名
       return this.grid ? classes[1] : null
     }
   }
 }
+
 </script>
 
 <style lang="less" scoped>

@@ -1,7 +1,4 @@
 @primary-color: #1890ff;
-/* stylelint-disable at-rule-empty-line-before,at-rule-name-space-after,at-rule-no-unknown */
-/* stylelint-disable no-duplicate-selectors */
-/* stylelint-disable */
 .bezierEasingMixin() {
   @functions: ~`(function() {
   var NEWTON_ITERATIONS = 4;
@@ -18,10 +15,8 @@
   function B (aA1, aA2) { return 3.0 * aA2 - 6.0 * aA1; }
   function C (aA1)      { return 3.0 * aA1; }
 
-  // Returns x(t) given t, x1, and x2, or y(t) given t, y1, and y2.
   function calcBezier (aT, aA1, aA2) { return ((A(aA1, aA2) * aT + B(aA1, aA2)) * aT + C(aA1)) * aT; }
 
-  // Returns dx/dt given t, x1, and x2, or dy/dt given t, y1, and y2.
   function getSlope (aT, aA1, aA2) { return 3.0 * A(aA1, aA2) * aT * aT + 2.0 * B(aA1, aA2) * aT + C(aA1); }
 
   function binarySubdivide (aX, aA, aB, mX1, mX2) {
@@ -55,7 +50,6 @@
       throw new Error('bezier x values must be in [0, 1] range');
     }
 
-    // Precompute samples table
     var sampleValues = float32ArraySupported ? new Float32Array(kSplineTableSize) : new Array(kSplineTableSize);
     if (mX1 !== mY1 || mX2 !== mY2) {
       for (var i = 0; i < kSplineTableSize; ++i) {
@@ -72,8 +66,6 @@
         intervalStart += kSampleStepSize;
       }
       --currentSample;
-
-      // Interpolate to provide an initial guess for t
       var dist = (aX - sampleValues[currentSample]) / (sampleValues[currentSample + 1] - sampleValues[currentSample]);
       var guessForT = intervalStart + dist * kSampleStepSize;
 
@@ -91,7 +83,6 @@
       if (mX1 === mY1 && mX2 === mY2) {
         return x; // linear
       }
-      // Because JavaScript number are imprecise, we should guarantee the extremes are right.
       if (x === 0) {
         return 0;
       }
@@ -103,21 +94,15 @@
   };
 
   this.colorEasing = BezierEasing(0.26, 0.09, 0.37, 0.18);
-  // less 3 requires a return
   return '';
 })()`;
 }
-// It is hacky way to make this function will be compiled preferentially by less
-// resolve error: `ReferenceError: colorPalette is not defined`
-// https://github.com/ant-design/ant-motion/issues/44
 .bezierEasingMixin();
 
-/* stylelint-disable declaration-bang-space-before,no-duplicate-selectors,string-no-newline */
+
 .tinyColorMixin() {
   @functions: ~`(function() {
-// TinyColor v1.4.1
-// https://github.com/bgrins/TinyColor
-// 2016-07-07, Brian Grinstead, MIT License
+
 var trimLeft = /^\s+/,
     trimRight = /\s+$/,
     tinyCounter = 0,
@@ -131,11 +116,9 @@ function tinycolor (color, opts) {
     color = (color) ? color : '';
     opts = opts || { };
 
-    // If input is already a tinycolor, return itself
     if (color instanceof tinycolor) {
        return color;
     }
-    // If we are called as a function, call using new instead
     if (!(this instanceof tinycolor)) {
         return new tinycolor(color, opts);
     }
@@ -150,10 +133,7 @@ function tinycolor (color, opts) {
     this._format = opts.format || rgb.format;
     this._gradientType = opts.gradientType;
 
-    // Don't let the range of [0,255] come back in [0,1].
-    // Potentially lose a little bit of precision here, but will fix issues where
-    // .5 gets interpreted as half of the total, instead of half of 1
-    // If it was supposed to be 128, this was already taken care of by inputToRgb
+
     if (this._r < 1) { this._r = mathRound(this._r); }
     if (this._g < 1) { this._g = mathRound(this._g); }
     if (this._b < 1) { this._b = mathRound(this._b); }
@@ -182,12 +162,10 @@ tinycolor.prototype = {
         return this._a;
     },
     getBrightness: function() {
-        //http://www.w3.org/TR/AERT#color-contrast
         var rgb = this.toRgb();
         return (rgb.r * 299 + rgb.g * 587 + rgb.b * 114) / 1000;
     },
     getLuminance: function() {
-        //http://www.w3.org/TR/2008/REC-WCAG20-20081211/#relativeluminancedef
         var rgb = this.toRgb();
         var RsRGB, GsRGB, BsRGB, R, G, B;
         RsRGB = rgb.r/255;
@@ -286,8 +264,7 @@ tinycolor.prototype = {
         var needsAlphaFormat = !formatSet && hasAlpha && (format === "hex" || format === "hex6" || format === "hex3" || format === "hex4" || format === "hex8" || format === "name");
 
         if (needsAlphaFormat) {
-            // Special case for "transparent", all other non-alpha formats
-            // will return rgba when there is transparency.
+
             if (format === "name" && this._a === 0) {
                 return this.toName();
             }
@@ -380,8 +357,7 @@ tinycolor.prototype = {
     }
 };
 
-// If input is an object, force 1 into "1.0" to handle ratios properly
-// String input requires "1.0" as input, so 1 will be treated as 1
+
 tinycolor.fromRatio = function(color, opts) {
     if (typeof color == "object") {
         var newColor = {};
@@ -401,21 +377,7 @@ tinycolor.fromRatio = function(color, opts) {
     return tinycolor(color, opts);
 };
 
-// Given a string or object, convert that input to RGB
-// Possible string inputs:
-//
-//     "red"
-//     "#f00" or "f00"
-//     "#ff0000" or "ff0000"
-//     "#ff000000" or "ff000000"
-//     "rgb 255 0 0" or "rgb (255, 0, 0)"
-//     "rgb 1.0 0 0" or "rgb (1, 0, 0)"
-//     "rgba (255, 0, 0, 1)" or "rgba 255, 0, 0, 1"
-//     "rgba (1.0, 0, 0, 1)" or "rgba 1.0, 0, 0, 1"
-//     "hsl(0, 100%, 50%)" or "hsl 0 100% 50%"
-//     "hsla(0, 100%, 50%, 1)" or "hsla 0 100% 50%, 1"
-//     "hsv(0, 100%, 100%)" or "hsv 0 100% 100%"
-//
+
 function inputToRGB(color) {
 
     var rgb = { r: 0, g: 0, b: 0 };
@@ -468,17 +430,6 @@ function inputToRGB(color) {
     };
 }
 
-// Conversion Functions
-// --------------------
-
-// rgbToHsl, rgbToHsv, hslToRgb, hsvToRgb modified from:
-// <http://mjijackson.com/2008/02/rgb-to-hsl-and-rgb-to-hsv-color-model-conversion-algorithms-in-javascript>
-
-// rgbToRgb
-// Handle bounds / percentage checking to conform to CSS color spec
-// <http://www.w3.org/TR/css3-color/>
-// *Assumes:* r, g, b in [0, 255] or [0, 1]
-// *Returns:* { r, g, b } in [0, 255]
 function rgbToRgb(r, g, b){
     return {
         r: bound01(r, 255) * 255,
@@ -487,10 +438,7 @@ function rgbToRgb(r, g, b){
     };
 }
 
-// rgbToHsl
-// Converts an RGB color value to HSL.
-// *Assumes:* r, g, and b are contained in [0, 255] or [0, 1]
-// *Returns:* { h, s, l } in [0,1]
+
 function rgbToHsl(r, g, b) {
 
     r = bound01(r, 255);
@@ -501,7 +449,7 @@ function rgbToHsl(r, g, b) {
     var h, s, l = (max + min) / 2;
 
     if(max == min) {
-        h = s = 0; // achromatic
+        h = s = 0;
     }
     else {
         var d = max - min;
@@ -518,10 +466,7 @@ function rgbToHsl(r, g, b) {
     return { h: h, s: s, l: l };
 }
 
-// hslToRgb
-// Converts an HSL color value to RGB.
-// *Assumes:* h is contained in [0, 1] or [0, 360] and s and l are contained [0, 1] or [0, 100]
-// *Returns:* { r, g, b } in the set [0, 255]
+
 function hslToRgb(h, s, l) {
     var r, g, b;
 
@@ -539,7 +484,7 @@ function hslToRgb(h, s, l) {
     }
 
     if(s === 0) {
-        r = g = b = l; // achromatic
+        r = g = b = l;
     }
     else {
         var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
@@ -552,10 +497,7 @@ function hslToRgb(h, s, l) {
     return { r: r * 255, g: g * 255, b: b * 255 };
 }
 
-// rgbToHsv
-// Converts an RGB color value to HSV
-// *Assumes:* r, g, and b are contained in the set [0, 255] or [0, 1]
-// *Returns:* { h, s, v } in [0,1]
+
 function rgbToHsv(r, g, b) {
 
     r = bound01(r, 255);
@@ -569,7 +511,7 @@ function rgbToHsv(r, g, b) {
     s = max === 0 ? 0 : d / max;
 
     if(max == min) {
-        h = 0; // achromatic
+        h = 0;
     }
     else {
         switch(max) {
@@ -582,10 +524,7 @@ function rgbToHsv(r, g, b) {
     return { h: h, s: s, v: v };
 }
 
-// hsvToRgb
-// Converts an HSV color value to RGB.
-// *Assumes:* h is contained in [0, 1] or [0, 360] and s and v are contained in [0, 1] or [0, 100]
-// *Returns:* { r, g, b } in the set [0, 255]
+
  function hsvToRgb(h, s, v) {
 
     h = bound01(h, 360) * 6;
@@ -605,10 +544,7 @@ function rgbToHsv(r, g, b) {
     return { r: r * 255, g: g * 255, b: b * 255 };
 }
 
-// rgbToHex
-// Converts an RGB color to hex
-// Assumes r, g, and b are contained in the set [0, 255]
-// Returns a 3 or 6 character hex
+
 function rgbToHex(r, g, b, allow3Char) {
 
     var hex = [
@@ -617,7 +553,7 @@ function rgbToHex(r, g, b, allow3Char) {
         pad2(mathRound(b).toString(16))
     ];
 
-    // Return a 3 character hex if possible
+
     if (allow3Char && hex[0].charAt(0) == hex[0].charAt(1) && hex[1].charAt(0) == hex[1].charAt(1) && hex[2].charAt(0) == hex[2].charAt(1)) {
         return hex[0].charAt(0) + hex[1].charAt(0) + hex[2].charAt(0);
     }
@@ -625,10 +561,7 @@ function rgbToHex(r, g, b, allow3Char) {
     return hex.join("");
 }
 
-// rgbaToHex
-// Converts an RGBA color plus alpha transparency to hex
-// Assumes r, g, b are contained in the set [0, 255] and
-// a in [0, 1]. Returns a 4 or 8 character rgba hex
+
 function rgbaToHex(r, g, b, a, allow4Char) {
 
     var hex = [
@@ -638,7 +571,7 @@ function rgbaToHex(r, g, b, a, allow4Char) {
         pad2(convertDecimalToHex(a))
     ];
 
-    // Return a 4 character hex if possible
+
     if (allow4Char && hex[0].charAt(0) == hex[0].charAt(1) && hex[1].charAt(0) == hex[1].charAt(1) && hex[2].charAt(0) == hex[2].charAt(1) && hex[3].charAt(0) == hex[3].charAt(1)) {
         return hex[0].charAt(0) + hex[1].charAt(0) + hex[2].charAt(0) + hex[3].charAt(0);
     }
@@ -646,9 +579,7 @@ function rgbaToHex(r, g, b, a, allow4Char) {
     return hex.join("");
 }
 
-// rgbaToArgbHex
-// Converts an RGBA color to an ARGB Hex8 string
-// Rarely used, but required for "toFilter()"
+
 function rgbaToArgbHex(r, g, b, a) {
 
     var hex = [
@@ -661,8 +592,7 @@ function rgbaToArgbHex(r, g, b, a) {
     return hex.join("");
 }
 
-// equals
-// Can be called with any tinycolor input
+
 tinycolor.equals = function (color1, color2) {
     if (!color1 || !color2) { return false; }
     return tinycolor(color1).toRgbString() == tinycolor(color2).toRgbString();
@@ -676,10 +606,7 @@ tinycolor.random = function() {
     });
 };
 
-// Modification Functions
-// ----------------------
-// Thanks to less.js for some of the basics here
-// <https://github.com/cloudhead/less.js/blob/master/lib/less/functions.js>
+
 
 function desaturate(color, amount) {
     amount = (amount === 0) ? 0 : (amount || 10);
@@ -807,8 +734,7 @@ function monochromatic(color, results) {
     return ret;
 }
 
-// Utility Functions
-// ---------------------
+
 
 tinycolor.mix = function(color1, color2, amount) {
     amount = (amount === 0) ? 0 : (amount || 50);
@@ -828,28 +754,14 @@ tinycolor.mix = function(color1, color2, amount) {
     return tinycolor(rgba);
 };
 
-// Readability Functions
-// ---------------------
-// <http://www.w3.org/TR/2008/REC-WCAG20-20081211/#contrast-ratiodef (WCAG Version 2)
 
-// contrast
-// Analyze the 2 colors and returns the color contrast defined by (WCAG Version 2)
 tinycolor.readability = function(color1, color2) {
     var c1 = tinycolor(color1);
     var c2 = tinycolor(color2);
     return (Math.max(c1.getLuminance(),c2.getLuminance())+0.05) / (Math.min(c1.getLuminance(),c2.getLuminance())+0.05);
 };
 
-// isReadable
-// Ensure that foreground and background color combinations meet WCAG2 guidelines.
-// The third argument is an optional Object.
-//      the 'level' property states 'AA' or 'AAA' - if missing or invalid, it defaults to 'AA';
-//      the 'size' property states 'large' or 'small' - if missing or invalid, it defaults to 'small'.
-// If the entire object is absent, isReadable defaults to {level:"AA",size:"small"}.
 
-// *Example*
-//    tinycolor.isReadable("#000", "#111") => false
-//    tinycolor.isReadable("#000", "#111",{level:"AA",size:"large"}) => false
 tinycolor.isReadable = function(color1, color2, wcag2) {
     var readability = tinycolor.readability(color1, color2);
     var wcag2Parms, out;
@@ -873,15 +785,6 @@ tinycolor.isReadable = function(color1, color2, wcag2) {
 
 };
 
-// mostReadable
-// Given a base color and a list of possible foreground or background
-// colors for that base, returns the most readable color.
-// Optionally returns Black or White if the most readable color is unreadable.
-// *Example*
-//    tinycolor.mostReadable(tinycolor.mostReadable("#123", ["#124", "#125"],{includeFallbackColors:false}).toHexString(); // "#112255"
-//    tinycolor.mostReadable(tinycolor.mostReadable("#123", ["#124", "#125"],{includeFallbackColors:true}).toHexString();  // "#ffffff"
-//    tinycolor.mostReadable("#a8015a", ["#faf3f3"],{includeFallbackColors:true,level:"AAA",size:"large"}).toHexString(); // "#faf3f3"
-//    tinycolor.mostReadable("#a8015a", ["#faf3f3"],{includeFallbackColors:true,level:"AAA",size:"small"}).toHexString(); // "#ffffff"
 tinycolor.mostReadable = function(baseColor, colorList, args) {
     var bestColor = null;
     var bestScore = 0;
@@ -909,9 +812,7 @@ tinycolor.mostReadable = function(baseColor, colorList, args) {
     }
 };
 
-// Big List of Colors
-// ------------------
-// <http://www.w3.org/TR/css3-color/#svg-color>
+
 var names = tinycolor.names = {
     aliceblue: "f0f8ff",
     antiquewhite: "faebd7",
@@ -1064,13 +965,9 @@ var names = tinycolor.names = {
     yellowgreen: "9acd32"
 };
 
-// Make it easy to access colors via hexNames[hex]
 var hexNames = tinycolor.hexNames = flip(names);
 
-// Utilities
-// ---------
 
-// { 'name1': 'val1' } becomes { 'val1': 'name1' }
 function flip(o) {
     var flipped = { };
     for (var i in o) {
@@ -1081,7 +978,7 @@ function flip(o) {
     return flipped;
 }
 
-// Return a valid alpha value [0,1] with all invalid values being set to 1
+
 function boundAlpha(a) {
     a = parseFloat(a);
 
@@ -1092,54 +989,44 @@ function boundAlpha(a) {
     return a;
 }
 
-// Take input from [0, n] and return it as [0, 1]
+
 function bound01(n, max) {
     if (isOnePointZero(n)) { n = "100%"; }
 
     var processPercent = isPercentage(n);
     n = mathMin(max, mathMax(0, parseFloat(n)));
 
-    // Automatically convert percentage into number
     if (processPercent) {
         n = parseInt(n * max, 10) / 100;
     }
 
-    // Handle floating point rounding errors
     if ((Math.abs(n - max) < 0.000001)) {
         return 1;
     }
 
-    // Convert into [0, 1] range if it isn't already
     return (n % max) / parseFloat(max);
 }
 
-// Force a number between 0 and 1
 function clamp01(val) {
     return mathMin(1, mathMax(0, val));
 }
 
-// Parse a base-16 hex value into a base-10 integer
 function parseIntFromHex(val) {
     return parseInt(val, 16);
 }
 
-// Need to handle 1.0 as 100%, since once it is a number, there is no difference between it and 1
-// <http://stackoverflow.com/questions/7422072/javascript-how-to-detect-number-as-a-decimal-including-1-0>
 function isOnePointZero(n) {
     return typeof n == "string" && n.indexOf('.') != -1 && parseFloat(n) === 1;
 }
 
-// Check to see if string passed in is a percentage
 function isPercentage(n) {
     return typeof n === "string" && n.indexOf('%') != -1;
 }
 
-// Force a hex value to have 2 characters
 function pad2(c) {
     return c.length == 1 ? '0' + c : '' + c;
 }
 
-// Replace a decimal with it's percentage value
 function convertToPercentage(n) {
     if (n <= 1) {
         n = (n * 100) + "%";
@@ -1148,29 +1035,21 @@ function convertToPercentage(n) {
     return n;
 }
 
-// Converts a decimal to a hex value
 function convertDecimalToHex(d) {
     return Math.round(parseFloat(d) * 255).toString(16);
 }
-// Converts a hex value to a decimal
 function convertHexToDecimal(h) {
     return (parseIntFromHex(h) / 255);
 }
 
 var matchers = (function() {
 
-    // <http://www.w3.org/TR/css3-values/#integers>
     var CSS_INTEGER = "[-\\+]?\\d+%?";
 
-    // <http://www.w3.org/TR/css3-values/#number-value>
     var CSS_NUMBER = "[-\\+]?\\d*\\.\\d+%?";
 
-    // Allow positive/negative integer/number.  Don't capture the either/or, just the entire outcome.
     var CSS_UNIT = "(?:" + CSS_NUMBER + ")|(?:" + CSS_INTEGER + ")";
 
-    // Actual matching.
-    // Parentheses and commas are optional, but not required.
-    // Whitespace can take the place of commas or opening paren
     var PERMISSIVE_MATCH3 = "[\\s|\\(]+(" + CSS_UNIT + ")[,|\\s]+(" + CSS_UNIT + ")[,|\\s]+(" + CSS_UNIT + ")\\s*\\)?";
     var PERMISSIVE_MATCH4 = "[\\s|\\(]+(" + CSS_UNIT + ")[,|\\s]+(" + CSS_UNIT + ")[,|\\s]+(" + CSS_UNIT + ")[,|\\s]+(" + CSS_UNIT + ")\\s*\\)?";
 
@@ -1189,16 +1068,12 @@ var matchers = (function() {
     };
 })();
 
-// isValidCSSUnit
-// Take in a single string / number and check to see if it looks like a CSS unit
-// (see matchers above for definition).
+
 function isValidCSSUnit(color) {
     return !!matchers.CSS_UNIT.exec(color);
 }
 
-// stringInputToObject
-// Permissive string parsing.  Take in a number of formats, and output an object
-// based on detected format.  Returns { r, g, b } or { h, s, l } or { h, s, v}
+
 function stringInputToObject(color) {
 
     color = color.replace(trimLeft, '').replace(trimRight, '').toLowerCase();
@@ -1211,10 +1086,7 @@ function stringInputToObject(color) {
         return { r: 0, g: 0, b: 0, a: 0, format: "name" };
     }
 
-    // Try to match string input using regular expressions.
-    // Keep most of the number bounding out of this function - don't worry about [0,1] or [0,100] or [0,360]
-    // Just return an object and let the conversion functions handle that.
-    // This way the result will be the same whether the tinycolor is initialized with string or object.
+
     var match;
     if ((match = matchers.rgb.exec(color))) {
         return { r: match[1], g: match[2], b: match[3] };
@@ -1273,8 +1145,7 @@ function stringInputToObject(color) {
 }
 
 function validateWCAG2Parms(parms) {
-    // return valid WCAG2 parms for isReadable.
-    // If input parms are invalid, return {"level":"AA", "size":"small"}
+
     var level, size;
     parms = parms || {"level":"AA", "size":"small"};
     level = (parms.level || "AA").toUpperCase();
@@ -1292,15 +1163,10 @@ this.tinycolor = tinycolor;
 
 })()`;
 }
-// It is hacky way to make this function will be compiled preferentially by less
-// resolve error: `ReferenceError: colorPalette is not defined`
-// https://github.com/ant-design/ant-motion/issues/44
+
 .tinyColorMixin();
 
-// We create a very complex algorithm which take the place of original tint/shade color system
-// to make sure no one can understand it 👻
-// and create an entire color palette magicly by inputing just a single primary color.
-// We are using bezier-curve easing function and some color manipulations like tint/shade/darken/spin
+
 .colorPaletteMixin() {
   @functions: ~`(function() {
   var hueStep = 2;
@@ -1364,12 +1230,9 @@ this.tinycolor = tinycolor;
   };
 })()`;
 }
-// It is hacky way to make this function will be compiled preferentially by less
-// resolve error: `ReferenceError: colorPalette is not defined`
-// https://github.com/ant-design/ant-motion/issues/44
+
 .colorPaletteMixin();
 
-// color palettes
 @blue-1: color(~`colorPalette("@{blue-6}", 1)`);
 @blue-2: color(~`colorPalette("@{blue-6}", 2)`);
 @blue-3: color(~`colorPalette("@{blue-6}", 3)`);
@@ -1514,10 +1377,8 @@ this.tinycolor = tinycolor;
 @gold-9: color(~`colorPalette("@{gold-6}", 9)`);
 @gold-10: color(~`colorPalette("@{gold-6}", 10)`);
 
-// The prefix to use on all css classes from ant.
 @ant-prefix             : ant;
 
-// -------- Colors -----------
 
 @info-color             : @blue-6;
 @success-color          : @green-6;
@@ -1527,25 +1388,19 @@ this.tinycolor = tinycolor;
 @warning-color          : @gold-6;
 @normal-color           : #d9d9d9;
 
-// Color used by default to control hover and active backgrounds and for
-// alert info backgrounds.
-@primary-1: color(~`colorPalette("@{primary-color}", 1)`);  // replace tint(@primary-color, 90%)
-@primary-2: color(~`colorPalette("@{primary-color}", 2)`);  // replace tint(@primary-color, 80%)
-@primary-3: color(~`colorPalette("@{primary-color}", 3)`);  // unused
-@primary-4: color(~`colorPalette("@{primary-color}", 4)`);  // unused
-@primary-5: color(~`colorPalette("@{primary-color}", 5)`);  // color used to control the text color in many active and hover states, replace tint(@primary-color, 20%)
-@primary-6: @primary-color;                                 // color used to control the text color of active buttons, don't use, use @primary-color
-@primary-7: color(~`colorPalette("@{primary-color}", 7)`);  // replace shade(@primary-color, 5%)
-@primary-8: color(~`colorPalette("@{primary-color}", 8)`);  // unused
-@primary-9: color(~`colorPalette("@{primary-color}", 9)`);  // unused
-@primary-10: color(~`colorPalette("@{primary-color}", 10)`);  // unused
+@primary-1: color(~`colorPalette("@{primary-color}", 1)`);
+@primary-2: color(~`colorPalette("@{primary-color}", 2)`);
+@primary-3: color(~`colorPalette("@{primary-color}", 3)`);
+@primary-4: color(~`colorPalette("@{primary-color}", 4)`);
+@primary-5: color(~`colorPalette("@{primary-color}", 5)`);
+@primary-6: @primary-color;
+@primary-7: color(~`colorPalette("@{primary-color}", 7)`);
+@primary-8: color(~`colorPalette("@{primary-color}", 8)`);
+@primary-9: color(~`colorPalette("@{primary-color}", 9)`);
+@primary-10: color(~`colorPalette("@{primary-color}", 10)`);
 
-// Base Scaffolding Variables
-// ---
 
-// Background color for `<body>`
 @body-background        : #fff;
-// Base background color for most components
 @component-background   : #fff;
 @font-family  : "Chinese Quote", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif,
 "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";

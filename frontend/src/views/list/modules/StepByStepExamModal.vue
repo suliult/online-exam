@@ -1,4 +1,5 @@
 <template>
+  <!-- 创建考试的模态框 -->
   <a-modal
     title="创建考试"
     :width="640"
@@ -6,27 +7,26 @@
     :confirmLoading="confirmLoading"
     @cancel="handleCancel"
   >
+    <!-- 加载中状态 -->
     <a-spin :spinning="confirmLoading">
+      <!-- 步骤条，显示当前步骤 -->
       <a-steps :current="currentStep" :style="{ marginBottom: '28px' }" size="small">
         <a-step title="考试描述"/>
         <a-step title="每题分数"/>
         <a-step title="选择题目"/>
       </a-steps>
+
+      <!-- 表单 -->
       <a-form :form="form">
-        <!-- step1 -->
+        <!-- 步骤1：考试描述 -->
         <div v-show="currentStep === 0">
-          <a-form-item
-            label="考试名称"
-            :labelCol="labelCol"
-            :wrapperCol="wrapperCol"
-          >
+          <!-- 考试名称 -->
+          <a-form-item label="考试名称" :labelCol="labelCol" :wrapperCol="wrapperCol">
             <a-input v-decorator="['name', {rules: [{required: true}]}]"/>
           </a-form-item>
-          <a-form-item
-            label="考试限时"
-            :labelCol="labelCol"
-            :wrapperCol="wrapperCol"
-          >
+
+          <!-- 考试限时 -->
+          <a-form-item label="考试限时" :labelCol="labelCol" :wrapperCol="wrapperCol">
             <a-input-number
               :min="1"
               :max="200"
@@ -34,28 +34,22 @@
             />
             分钟
           </a-form-item>
-          <a-form-item
-            label="考试简述"
-            :labelCol="labelCol"
-            :wrapperCol="wrapperCol"
-          >
+
+          <!-- 考试简述 -->
+          <a-form-item label="考试简述" :labelCol="labelCol" :wrapperCol="wrapperCol">
             <a-textarea :rows="2" v-decorator="['desc', {rules: [{required: true}]}]"></a-textarea>
           </a-form-item>
-          <a-form-item
-            label="考试封面"
-            :labelCol="labelCol"
-            :wrapperCol="wrapperCol"
-          >
-            <!-- 创建考试的时候传入的图片 -->
+
+          <!-- 考试封面 -->
+          <a-form-item label="考试封面" :labelCol="labelCol" :wrapperCol="wrapperCol">
             <div id="summernote-exam-avatar-create"></div>
           </a-form-item>
         </div>
+
+        <!-- 步骤2：每题分数 -->
         <div v-show="currentStep === 1">
-          <a-form-item
-            label="单选题"
-            :labelCol="labelCol"
-            :wrapperCol="wrapperCol"
-          >
+          <!-- 单选题分数 -->
+          <a-form-item label="单选题" :labelCol="labelCol" :wrapperCol="wrapperCol">
             <a-input-number
               :min="1"
               :max="20"
@@ -64,11 +58,8 @@
             分
           </a-form-item>
 
-          <a-form-item
-            label="多选题"
-            :labelCol="labelCol"
-            :wrapperCol="wrapperCol"
-          >
+          <!-- 多选题分数 -->
+          <a-form-item label="多选题" :labelCol="labelCol" :wrapperCol="wrapperCol">
             <a-input-number
               :min="1"
               :max="20"
@@ -77,11 +68,8 @@
             分
           </a-form-item>
 
-          <a-form-item
-            label="判断题"
-            :labelCol="labelCol"
-            :wrapperCol="wrapperCol"
-          >
+          <!-- 判断题分数 -->
+          <a-form-item label="判断题" :labelCol="labelCol" :wrapperCol="wrapperCol">
             <a-input-number
               :min="1"
               :max="20"
@@ -91,14 +79,10 @@
           </a-form-item>
         </div>
 
+        <!-- 步骤3：选择题目 -->
         <div v-show="currentStep === 2">
-          <a-form-item
-            label="选择单选题"
-            :labelCol="labelCol"
-            :wrapperCol="wrapperCol"
-            enterButton="Search"
-          >
-            <!-- 单选 -->
+          <!-- 选择单选题 -->
+          <a-form-item label="选择单选题" :labelCol="labelCol" :wrapperCol="wrapperCol">
             <a-select
               mode="multiple"
               :size="size"
@@ -113,13 +97,8 @@
             </a-select>
           </a-form-item>
 
-          <a-form-item
-            label="选择多选题"
-            :labelCol="labelCol"
-            :wrapperCol="wrapperCol"
-            enterButton="Search"
-          >
-            <!-- 多选 -->
+          <!-- 选择多选题 -->
+          <a-form-item label="选择多选题" :labelCol="labelCol" :wrapperCol="wrapperCol">
             <a-select
               mode="multiple"
               :size="size"
@@ -134,13 +113,8 @@
             </a-select>
           </a-form-item>
 
-          <a-form-item
-            label="选择判断题"
-            :labelCol="labelCol"
-            :wrapperCol="wrapperCol"
-            enterButton="Search"
-          >
-            <!-- 判断 -->
+          <!-- 选择判断题 -->
+          <a-form-item label="选择判断题" :labelCol="labelCol" :wrapperCol="wrapperCol">
             <a-select
               mode="multiple"
               :size="size"
@@ -157,6 +131,8 @@
         </div>
       </a-form>
     </a-spin>
+
+    <!-- 模态框底部按钮 -->
     <template slot="footer">
       <a-button key="back" @click="backward" v-if="currentStep > 0" :style="{ float: 'left' }">上一步</a-button>
       <a-button key="cancel" @click="handleCancel">取消</a-button>
@@ -166,6 +142,7 @@
     </template>
   </a-modal>
 </template>
+
 
 <script>
 import '../../../plugins/summernote'

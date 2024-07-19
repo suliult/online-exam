@@ -1,13 +1,12 @@
-
 /* eslint-disable */
 /**
  * 该文件是为了按需加载，剔除掉了一些不需要的框架组件。
  * 减少了编译支持库包大小
- *
  * 当需要更多组件依赖时，在该文件加入即可
  */
 import Vue from 'vue'
 import {
+  // 导入 Ant Design Vue 的组件
   LocaleProvider,
   Layout,
   Input,
@@ -48,8 +47,9 @@ import {
   message,
   notification
 } from 'ant-design-vue'
-// import VueCropper from 'vue-cropper'
+// import VueCropper from 'vue-cropper'  // 图片裁剪组件，目前被注释掉
 
+// 注册 Ant Design Vue 组件
 Vue.use(LocaleProvider)
 Vue.use(Layout)
 Vue.use(Input)
@@ -87,9 +87,10 @@ Vue.use(Upload)
 Vue.use(Progress)
 Vue.use(Skeleton)
 Vue.use(Popconfirm)
-// Vue.use(VueCropper)
+// Vue.use(VueCropper)  // 图片裁剪组件注册，目前被注释掉
 Vue.use(notification)
 
+// 将一些全局方法挂载到 Vue 原型上，方便在组件中使用
 Vue.prototype.$confirm = Modal.confirm
 Vue.prototype.$message = message
 Vue.prototype.$notification = notification

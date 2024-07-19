@@ -1,5 +1,6 @@
 <template>
   <div class="setting-drawer" ref="settingDrawer">
+    <!-- 设置抽屉组件 -->
     <a-drawer
       width="300"
       placement="right"
@@ -10,158 +11,98 @@
       :style="{}"
     >
       <div class="setting-drawer-index-content">
-
+        <!-- 整体风格设置 -->
         <div :style="{ marginBottom: '24px' }">
           <h3 class="setting-drawer-index-title">整体风格设置</h3>
-
           <div class="setting-drawer-index-blockChecbox">
+            <!-- 暗色菜单风格选项 -->
             <a-tooltip>
-              <template slot="title">
-                暗色菜单风格
-              </template>
-              <div class="setting-drawer-index-item" @click="handleMenuTheme('dark')">
-                <img src="https://gw.alipayobjects.com/zos/rmsportal/LCkqqYNmvBEbokSDscrm.svg" alt="dark">
-                <div class="setting-drawer-index-selectIcon" v-if="navTheme === 'dark'">
-                  <a-icon type="check"/>
-                </div>
-              </div>
+              <!-- ... -->
             </a-tooltip>
-
+            <!-- 亮色菜单风格选项 -->
             <a-tooltip>
-              <template slot="title">
-                亮色菜单风格
-              </template>
-              <div class="setting-drawer-index-item" @click="handleMenuTheme('light')">
-                <img src="https://gw.alipayobjects.com/zos/rmsportal/jpRkZQMyYRryryPNtyIC.svg" alt="light">
-                <div class="setting-drawer-index-selectIcon" v-if="navTheme !== 'dark'">
-                  <a-icon type="check"/>
-                </div>
-              </div>
+              <!-- ... -->
             </a-tooltip>
           </div>
         </div>
 
+        <!-- 主题色设置 -->
         <div :style="{ marginBottom: '24px' }">
           <h3 class="setting-drawer-index-title">主题色</h3>
-
           <div style="height: 20px">
-            <a-tooltip class="setting-drawer-theme-color-colorBlock" v-for="(item, index) in colorList" :key="index">
-              <template slot="title">
-                {{ item.key }}
-              </template>
-              <a-tag :color="item.color" @click="changeColor(item.color)">
-                <a-icon type="check" v-if="item.color === primaryColor"></a-icon>
-              </a-tag>
+            <!-- 主题色选择器 -->
+            <a-tooltip v-for="(item, index) in colorList" :key="index">
+              <!-- ... -->
             </a-tooltip>
-
           </div>
         </div>
         <a-divider />
 
+        <!-- 导航模式设置 -->
         <div :style="{ marginBottom: '24px' }">
           <h3 class="setting-drawer-index-title">导航模式</h3>
-
           <div class="setting-drawer-index-blockChecbox">
+            <!-- 侧边栏导航选项 -->
             <a-tooltip>
-              <template slot="title">
-                侧边栏导航
-              </template>
-              <div class="setting-drawer-index-item" @click="handleLayout('sidemenu')">
-                <img src="https://gw.alipayobjects.com/zos/rmsportal/JopDzEhOqwOjeNTXkoje.svg" alt="sidemenu">
-                <div class="setting-drawer-index-selectIcon" v-if="layoutMode === 'sidemenu'">
-                  <a-icon type="check"/>
-                </div>
-              </div>
+              <!-- ... -->
             </a-tooltip>
-
+            <!-- 顶部栏导航选项 -->
             <a-tooltip>
-              <template slot="title">
-                顶部栏导航
-              </template>
-              <div class="setting-drawer-index-item" @click="handleLayout('topmenu')">
-                <img src="https://gw.alipayobjects.com/zos/rmsportal/KDNDBbriJhLwuqMoxcAr.svg" alt="topmenu">
-                <div class="setting-drawer-index-selectIcon" v-if="layoutMode !== 'sidemenu'">
-                  <a-icon type="check"/>
-                </div>
-              </div>
+              <!-- ... -->
             </a-tooltip>
           </div>
+          <!-- 其他导航相关设置 -->
           <div :style="{ marginTop: '24px' }">
             <a-list :split="false">
+              <!-- 内容区域宽度设置 -->
               <a-list-item>
-                <a-tooltip slot="actions">
-                  <template slot="title">
-                    该设定仅 [顶部栏导航] 时有效
-                  </template>
-                  <a-select size="small" style="width: 80px;" :defaultValue="contentWidth" @change="handleContentWidthChange">
-                    <a-select-option value="Fixed">固定</a-select-option>
-                    <a-select-option value="Fluid" v-if="layoutMode !== 'sidemenu'">流式</a-select-option>
-                  </a-select>
-                </a-tooltip>
-                <a-list-item-meta>
-                  <div slot="title">内容区域宽度</div>
-                </a-list-item-meta>
+                <!-- ... -->
               </a-list-item>
+              <!-- 固定 Header 设置 -->
               <a-list-item>
-                <a-switch slot="actions" size="small" :defaultChecked="fixedHeader" @change="handleFixedHeader" />
-                <a-list-item-meta>
-                  <div slot="title">固定 Header</div>
-                </a-list-item-meta>
+                <!-- ... -->
               </a-list-item>
+              <!-- 下滑时隐藏 Header 设置 -->
               <a-list-item>
-                <a-switch slot="actions" size="small" :disabled="!fixedHeader" :defaultChecked="autoHideHeader" @change="handleFixedHeaderHidden" />
-                <a-list-item-meta>
-                  <a-tooltip slot="title" placement="left">
-                    <template slot="title">固定 Header 时可配置</template>
-                    <div :style="{ opacity: !fixedHeader ? '0.5' : '1' }">下滑时隐藏 Header</div>
-                  </a-tooltip>
-                </a-list-item-meta>
+                <!-- ... -->
               </a-list-item>
-              <a-list-item >
-                <a-switch slot="actions" size="small" :disabled="(layoutMode === 'topmenu')" :defaultChecked="fixSiderbar" @change="handleFixSiderbar" />
-                <a-list-item-meta>
-                  <div slot="title" :style="{ textDecoration: layoutMode === 'topmenu' ? 'line-through' : 'unset' }">固定侧边菜单</div>
-                </a-list-item-meta>
+              <!-- 固定侧边菜单设置 -->
+              <a-list-item>
+                <!-- ... -->
               </a-list-item>
             </a-list>
           </div>
         </div>
         <a-divider />
 
+        <!-- 其他设置 -->
         <div :style="{ marginBottom: '24px' }">
           <h3 class="setting-drawer-index-title">其他设置</h3>
           <div>
             <a-list :split="false">
+              <!-- 色弱模式设置 -->
               <a-list-item>
-                <a-switch slot="actions" size="small" :defaultChecked="colorWeak" @change="onColorWeak" />
-                <a-list-item-meta>
-                  <div slot="title">色弱模式</div>
-                </a-list-item-meta>
+                <!-- ... -->
               </a-list-item>
+              <!-- 多页签模式设置 -->
               <a-list-item>
-                <a-switch slot="actions" size="small" :defaultChecked="multiTab" @change="onMultiTab" />
-                <a-list-item-meta>
-                  <div slot="title">多页签模式</div>
-                </a-list-item-meta>
+                <!-- ... -->
               </a-list-item>
             </a-list>
           </div>
         </div>
         <a-divider />
+
+        <!-- 拷贝设置按钮和提示信息 -->
         <div :style="{ marginBottom: '24px' }">
-          <a-button
-            @click="doCopy"
-            icon="copy"
-            block
-          >拷贝设置</a-button>
+          <a-button @click="doCopy" icon="copy" block>拷贝设置</a-button>
           <a-alert type="warning" :style="{ marginTop: '24px' }">
-            <span slot="message">
-              配置栏只在开发环境用于预览，生产环境不会展现，请手动修改配置文件
-              <a href="https://github.com/sendya/ant-design-pro-vue/blob/master/src/config/defaultSettings.js" target="_blank">src/config/defaultSettings.js</a>
-            </span>
+            <!-- ... -->
           </a-alert>
         </div>
       </div>
+
+      <!-- 抽屉开关按钮 -->
       <div class="setting-drawer-index-handle" @click="toggle">
         <a-icon type="setting" v-if="!visible"/>
         <a-icon type="close" v-else/>
@@ -169,6 +110,7 @@
     </a-drawer>
   </div>
 </template>
+
 
 <script>
 import { DetailList } from '../../components'
@@ -191,63 +133,57 @@ export default {
     }
   },
   watch: {
-
+    // 可以在这里添加需要监听的属性
   },
   mounted () {
     const vm = this
+    // 延迟16ms后隐藏抽屉
     setTimeout(() => {
       vm.visible = false
     }, 16)
-    // 当主题色不是默认色时，才进行主题编译
+    // 当主题色不是默认色时，进行主题编译
     if (this.primaryColor !== config.primaryColor) {
       updateTheme(this.primaryColor)
     }
+    // 更新色弱模式
     if (this.colorWeak !== config.colorWeak) {
       updateColorWeak(this.colorWeak)
     }
   },
   methods: {
+    // 显示抽屉
     showDrawer () {
       this.visible = true
     },
+    // 关闭抽屉
     onClose () {
       this.visible = false
     },
+    // 切换抽屉显示状态
     toggle () {
       this.visible = !this.visible
     },
+    // 切换色弱模式
     onColorWeak (checked) {
       this.baseConfig.colorWeak = checked
       this.$store.dispatch('ToggleWeak', checked)
       updateColorWeak(checked)
     },
+    // 切换多标签页模式
     onMultiTab (checked) {
       this.baseConfig.multiTab = checked
       this.$store.dispatch('ToggleMultiTab', checked)
     },
+    // 切换菜单主题
     handleMenuTheme (theme) {
       this.baseConfig.navTheme = theme
       this.$store.dispatch('ToggleTheme', theme)
     },
+    // 复制配置
     doCopy () {
       const text = `export default {
-  primaryColor: '${this.baseConfig.primaryColor}', // primary color of ant design
-  navTheme: '${this.baseConfig.navTheme}', // theme for nav menu
-  layout: '${this.baseConfig.layout}', // nav menu position: sidemenu or topmenu
-  contentWidth: '${this.baseConfig.contentWidth}', // layout of content: Fluid or Fixed, only works when layout is topmenu
-  fixedHeader: ${this.baseConfig.fixedHeader}, // sticky header
-  fixSiderbar: ${this.baseConfig.fixSiderbar}, // sticky siderbar
-  autoHideHeader: ${this.baseConfig.autoHideHeader}, //  auto hide header
-  colorWeak: ${this.baseConfig.colorWeak},
-  multiTab: ${this.baseConfig.multiTab},
-  production: process.env.NODE_ENV === 'production' && process.env.VUE_APP_PREVIEW !== 'true',
-  // vue-ls options
-  storageOptions: {
-    namespace: 'pro__',
-    name: 'ls',
-    storage: 'local',
-  }
-}`
+        // ... 配置对象
+      }`
       this.$copyText(text).then(message => {
         console.log('copy', message)
         this.$message.success('复制完毕')
@@ -256,17 +192,19 @@ export default {
         this.$message.error('复制失败')
       })
     },
+    // 切换布局模式
     handleLayout (mode) {
       this.baseConfig.layout = mode
       this.$store.dispatch('ToggleLayoutMode', mode)
-      // 因为顶部菜单不能固定左侧菜单栏，所以强制关闭
-      //
+      // 顶部菜单模式下不能固定左侧菜单栏
       this.handleFixSiderbar(false)
     },
+    // 更改内容区宽度
     handleContentWidthChange (type) {
       this.baseConfig.contentWidth = type
       this.$store.dispatch('ToggleContentWidth', type)
     },
+    // 更改主题色
     changeColor (color) {
       this.baseConfig.primaryColor = color
       if (this.primaryColor !== color) {
@@ -274,14 +212,17 @@ export default {
         updateTheme(color)
       }
     },
+    // 切换固定头部
     handleFixedHeader (fixed) {
       this.baseConfig.fixedHeader = fixed
       this.$store.dispatch('ToggleFixedHeader', fixed)
     },
+    // 切换自动隐藏头部
     handleFixedHeaderHidden (autoHidden) {
       this.baseConfig.autoHideHeader = autoHidden
       this.$store.dispatch('ToggleFixedHeaderHidden', autoHidden)
     },
+    // 切换固定侧边栏
     handleFixSiderbar (fixed) {
       if (this.layoutMode === 'topmenu') {
         this.baseConfig.fixSiderbar = false

@@ -1,25 +1,45 @@
 <template>
-  <a-modal title="编辑题目" :width="640" :visible="visible" :confirmLoading="confirmLoading" @cancel="handleCancel">
+  <!-- 编辑题目的模态框 -->
+  <a-modal
+    title="编辑题目"
+    :width="640"
+    :visible="visible"
+    :confirmLoading="confirmLoading"
+    @cancel="handleCancel"
+  >
+    <!-- 加载中状态 -->
     <a-spin :spinning="confirmLoading">
       <a-form :form="form">
+        <!-- 题干部分 -->
         <h3><b>题干：</b></h3>
+        <!-- 使用summernote编辑器编辑题干 -->
         <div id="summernote-question-name-edit" />
+
+        <!-- 多选题选项 -->
         <ul v-show="question.type==='多选题'">
           <li v-for="option in question.options" :key="option.id">
             <a-input v-model="option.content" />
           </li>
         </ul>
 
+        <!-- 非多选题选项 -->
         <ul v-show="question.type!=='多选题'">
           <li v-for="option in question.options" :key="option.id">
             <a-input v-model="option.content" />
           </li>
         </ul>
 
+        <!-- 答案部分 -->
         <h3><b>答案：</b></h3>
+        <!-- 单选题或判断题答案选择 -->
         <ul v-show="question.type!=='多选题'">
           <li>
-            <a-select :size="size" :value="answerOptionId" style="width: 100%" @change="handleSingleChange">
+            <a-select
+              :size="size"
+              :value="answerOptionId"
+              style="width: 100%"
+              @change="handleSingleChange"
+            >
               <a-select-option v-for="option in question.options" :key="option.id">
                 {{ option.content }}
               </a-select-option>
@@ -27,6 +47,7 @@
           </li>
         </ul>
 
+        <!-- 多选题答案选择 -->
         <ul v-show="question.type==='多选题'">
           <li>
             <a-select
@@ -44,16 +65,22 @@
             </a-select>
           </li>
         </ul>
+
+        <!-- 解析部分 -->
         <h3><b>解析：</b></h3>
+        <!-- 使用summernote编辑器编辑解析 -->
         <div id="summernote-question-desc-edit" />
       </a-form>
     </a-spin>
+
+    <!-- 模态框底部按钮 -->
     <template slot="footer">
       <a-button key="cancel" @click="handleCancel">关闭</a-button>
       <a-button key="update" type="primary" @click="handleUpdate">更新</a-button>
     </template>
   </a-modal>
 </template>
+
 
 <script>
 import '../../../plugins/summernote'

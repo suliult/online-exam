@@ -1,6 +1,7 @@
 <template>
+  <!-- 主布局容器 -->
   <a-layout :class="['layout', device]">
-    <!-- SideMenu -->
+    <!-- 移动设备侧边菜单抽屉 -->
     <a-drawer
       v-if="isMobile()"
       placement="left"
@@ -9,6 +10,7 @@
       :visible="collapsed"
       @close="drawerClose"
     >
+      <!-- 移动端侧边菜单 -->
       <side-menu
         mode="inline"
         :menus="menus"
@@ -19,6 +21,7 @@
       ></side-menu>
     </a-drawer>
 
+    <!-- 桌面端侧边菜单 -->
     <side-menu
       v-else-if="isSideMenu()"
       mode="inline"
@@ -28,8 +31,9 @@
       :collapsible="true"
     ></side-menu>
 
+    <!-- 主内容区域布局 -->
     <a-layout :class="[layoutMode, `content-width-${contentWidth}`]" :style="{ paddingLeft: contentPaddingLeft, minHeight: '100vh' }">
-      <!-- layout header -->
+      <!-- 全局头部 -->
       <global-header
         :mode="layoutMode"
         :menus="menus"
@@ -39,25 +43,27 @@
         @toggle="toggle"
       />
 
-      <!-- layout content -->
+      <!-- 内容区域 -->
       <a-layout-content :style="{ height: '100%', margin: '24px 24px 0', paddingTop: fixedHeader ? '64px' : '0' }">
+        <!-- 多标签页组件 -->
         <multi-tab v-if="multiTab"></multi-tab>
+        <!-- 路由视图，使用过渡效果 -->
         <transition name="page-transition">
           <route-view />
         </transition>
       </a-layout-content>
 
-      <!-- layout footer -->
+      <!-- 页脚 -->
       <a-layout-footer>
         <global-footer />
       </a-layout-footer>
 
-      <!-- Setting Drawer (show in development mode) -->
+      <!-- 设置抽屉（仅在开发模式下显示） -->
       <setting-drawer v-if="!production"></setting-drawer>
     </a-layout>
   </a-layout>
-
 </template>
+
 
 <script>
 import { triggerWindowResizeEvent } from '../utils/util'
@@ -74,7 +80,7 @@ import SettingDrawer from '../components/SettingDrawer'
 
 export default {
   name: 'BasicLayout',
-  mixins: [mixin, mixinDevice],
+  mixins: [mixin, mixinDevice], // 混入通用方法和设备相关方法
   components: {
     RouteView,
     MultiTab,
@@ -85,9 +91,9 @@ export default {
   },
   data () {
     return {
-      production: config.production,
-      collapsed: false,
-      menus: []
+      production: config.production, // 是否为生产环境
+      collapsed: false, // 侧边栏是否折叠
+      menus: [] // 菜单数据
     }
   },
   computed: {
@@ -95,26 +101,27 @@ export default {
       // 动态主路由
       mainMenu: state => state.permission.addRouters
     }),
+    // 计算内容区左侧padding
     contentPaddingLeft () {
       if (!this.fixSidebar || this.isMobile()) {
         return '0'
       }
-      if (this.sidebarOpened) {
-        return '256px'
-      }
-      return '80px'
+      return this.sidebarOpened ? '256px' : '80px'
     }
   },
   watch: {
+    // 监听侧边栏打开状态，更新折叠状态
     sidebarOpened (val) {
       this.collapsed = !val
     }
   },
   created () {
+    // 初始化菜单数据和折叠状态
     this.menus = this.mainMenu.find(item => item.path === '/').children
     this.collapsed = !this.sidebarOpened
   },
   mounted () {
+    // Edge浏览器兼容性处理
     const userAgent = navigator.userAgent
     if (userAgent.indexOf('Edge') > -1) {
       this.$nextTick(() => {
@@ -127,11 +134,13 @@ export default {
   },
   methods: {
     ...mapActions(['setSidebar']),
+    // 切换侧边栏折叠状态
     toggle () {
       this.collapsed = !this.collapsed
       this.setSidebar(!this.collapsed)
       triggerWindowResizeEvent()
     },
+    // 计算内容区左侧padding
     paddingCalc () {
       let left = ''
       if (this.sidebarOpened) {
@@ -141,16 +150,19 @@ export default {
       }
       return left
     },
+    // 菜单选择处理
     menuSelect () {
       if (!this.isDesktop()) {
         this.collapsed = false
       }
     },
+    // 抽屉关闭处理
     drawerClose () {
       this.collapsed = false
     }
   }
 }
+
 </script>
 
 <style lang="less">

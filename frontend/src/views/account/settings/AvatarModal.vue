@@ -5,9 +5,10 @@
     :maskClosable="false"
     :confirmLoading="confirmLoading"
     :width="800"
-    @cancel="cancelHandel">
-    <a-row>
-      <a-col :xs="24" :md="12" :style="{height: '350px'}">
+    @cancel="cancelHandel"> <!-- 取消按钮点击事件 -->
+    <a-row> <!-- 使用 Ant Design 的 Row 组件进行布局 -->
+      <a-col :xs="24" :md="12" :style="{height: '350px'}">  <!-- 使用 Ant Design 的 Col 组件进行列布局，设置不同屏幕尺寸下的列数 -->
+        <!-- 使用 vue-cropper 组件进行图片裁剪 -->
         <vue-cropper
           ref="cropper"
           :img="options.img"
@@ -20,14 +21,14 @@
         >
         </vue-cropper>
       </a-col>
-      <a-col :xs="24" :md="12" :style="{height: '350px'}">
+      <a-col :xs="24" :md="12" :style="{height: '350px'}">  <!-- 显示裁剪后的预览图 -->
         <div class="avatar-upload-preview">
-          <img :src="previews.url" :style="previews.img"/>
+          <img :src="previews.url" :style="previews.img"/>  <!-- 使用 img 标签显示预览图 -->
         </div>
       </a-col>
     </a-row>
 
-    <template slot="footer">
+    <template slot="footer">  <!-- 模态框底部按钮区域 -->
       <a-button key="back" @click="cancelHandel">取消</a-button>
       <a-button key="submit" type="primary" :loading="confirmLoading" @click="okHandel">保存</a-button>
     </template>

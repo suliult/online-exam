@@ -147,7 +147,7 @@ export default {
     },
     async sendMessage () {
       if (!this.inputMessage.trim()) {
-        message.warning('请输入消息')
+        this.$message.warning('请输入消息')
         return
       }
 
@@ -176,7 +176,10 @@ export default {
           content: `错误: ${error.message || '未知错误，请稍后再试'}`,
           error: true
         })
-        message.error(`获取回答失败: ${error.message || '请稍后再试'}`)
+        this.$message.error({
+          content: `获取回答失败: ${error.message || '请稍后再试'}`,
+          duration: 5
+        })
       } finally {
         this.isLoading = false
         this.scrollToBottom()
@@ -210,7 +213,6 @@ export default {
     typewriterEffect (response) {
       console.log('Starting typewriter effect with:', response)
       let i = 0
-      const speed = 30
       const content = response.content
       if (!content) {
         console.error('Invalid content in typewriterEffect:', response)
@@ -225,14 +227,14 @@ export default {
           i++
           this.$forceUpdate()
           this.scrollToBottom()
-          setTimeout(typeWriter, speed)
+          requestAnimationFrame(typeWriter)
         } else {
           console.log('Typewriter effect completed')
           this.highlightCode()
         }
       }
 
-      typeWriter()
+      requestAnimationFrame(typeWriter)
     },
     saveChatsToStorage () {
       localStorage.setItem('chats', JSON.stringify(this.chats))
@@ -281,7 +283,7 @@ export default {
           content: `错误: ${error.message || '未知错误，请稍后再试'}`,
           error: true
         })
-        message.error(`重试失败: ${error.message || '请稍后再试'}`)
+        this.$message.error(`重试失败: ${error.message || '请稍后再试'}`)
       } finally {
         this.isLoading = false
         this.scrollToBottom()
@@ -307,7 +309,7 @@ export default {
           content: `错误: ${error.message || '未知错误，请稍后再试'}`,
           error: true
         }
-        message.error(`重新生成失败: ${error.message || '请稍后再试'}`)
+        this.$message.error(`重新生成失败: ${error.message || '请稍后再试'}`)
       } finally {
         this.isLoading = false
         this.scrollToBottom()
@@ -315,6 +317,8 @@ export default {
       }
     },
     async summarizeChat () {
+      if (this.currentChat.messages.length < 2) return
+
       const summaryPrompt = '请总结以下对话的主要内容，用一句简短的话概括：'
       const messagesToSummarize = this.currentChat.messages.map(msg => `${msg.role}: ${msg.content}`).join('\n')
 
@@ -408,90 +412,105 @@ export default {
   margin-bottom: 20px;
 }
 
-  .message .avatar {
-    margin-right: 10px;
+.message .avatar {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.message .content {
+  max-width: 70%;
+  padding: 10px 15px;
+  border-radius: 18px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.message.user {
+  flex-direction: row-reverse;
+}
+
+.message.user .content {
+  background-color: #1890ff;
+  color: #fff;
+  border-radius: 18px 0 18px 18px;
+}
+
+.message.assistant .content {
+  background-color: #f0f2f5;
+  border-radius: 0 18px 18px 18px;
+}
+
+.message .content /deep/ pre {
+  background-color: #282c34;
+  border-radius: 6px;
+  padding: 12px;
+  overflow-x: auto;
+}
+
+.message .content /deep/ code {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.9em;
+}
+
+.message.user .content /deep/ pre,
+.message.user .content /deep/ code {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.chat-list > div {
+  padding: 10px;
+  margin-bottom: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.chat-list > div:hover {
+  background-color: #e6f7ff;
+}
+
+.chat-list > div.active-chat {
+  background-color: #1890ff;
+  color: #fff;
+}
+
+.message-actions {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.message.user .message-actions {
+  justify-content: flex-end;
+}
+
+.message-actions .ant-btn {
+  margin-right: 10px;
+}
+
+.message.user .message-actions .ant-btn {
+  margin-right: 0;
+  margin-left: 10px;
+}
+
+.model-selection {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .chat-container {
+    flex-direction: column;
   }
 
-  .message .content {
-    max-width: 70%;
-    padding: 10px 15px;
-    border-radius: 18px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  .sidebar {
+    width: 100%;
+    height: auto;
+    max-height: 30vh;
   }
 
-  .message.user .content {
-    background-color: #1890ff;
-    color: #fff;
-    margin-left: auto;
-    border-radius: 18px 0 18px 18px;
+  .main-chat {
+    height: 70vh;
   }
-
-  .message.assistant .content {
-    background-color: #f0f2f5;
-    border-radius: 0 18px 18px 18px;
-  }
-
-  .message .content :deep(pre) {
-    background-color: #282c34;
-    border-radius: 6px;
-    padding: 12px;
-    overflow-x: auto;
-  }
-
-  .message .content :deep(code) {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 0.9em;
-  }
-
-  .message.user .content :deep(pre),
-  .message.user .content :deep(code) {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: #ffffff;
-  }
-
-  .chat-list > div {
-    padding: 10px;
-    margin-bottom: 5px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-  }
-
-  .chat-list > div:hover {
-    background-color: #e6f7ff;
-  }
-
-  .chat-list > div.active-chat {
-    background-color: #1890ff;
-    color: #fff;
-  }
-
-  .message-actions {
-    margin-top: 10px;
-  }
-
-  .message-actions .ant-btn {
-    margin-right: 10px;
-  }
-
-  .model-selection {
-    display: flex;
-    align-items: center;
-  }
-
-  @media (max-width: 768px) {
-    .chat-container {
-      flex-direction: column;
-    }
-
-    .sidebar {
-      width: 100%;
-      height: auto;
-      max-height: 30vh;
-    }
-
-    .main-chat {
-      height: 70vh;
-    }
-  }
+}
 </style>

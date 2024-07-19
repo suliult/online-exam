@@ -1,22 +1,36 @@
 <template>
   <a-card :bordered="false">
+    <!-- 工具栏 -->
     <div id="toolbar">
+      <!-- 新建题目按钮 -->
       <a-button type="primary" icon="plus" @click="$refs.createQuestionModal.create()">新建</a-button>&nbsp;
+      <!-- 全量刷新按钮 -->
       <a-button type="primary" icon="reload" @click="loadAll()">全量刷新</a-button>
     </div>
+
+    <!-- 题目列表表格 -->
     <BootstrapTable
       ref="table"
       :columns="columns"
       :data="tableData"
       :options="options"
     />
-    <!-- ref是为了方便用this.$refs.modal直接引用，下同 -->
+
+    <!-- 新建题目的步骤式模态框组件 -->
+    <!-- ref用于在Vue实例中通过this.$refs.createQuestionModal直接访问该组件 -->
     <step-by-step-question-modal ref="createQuestionModal" @ok="handleOk" />
+
+    <!-- 使用Summernote编辑器更新题目的模态框组件 -->
     <summernote-update-modal ref="questionUpdateModal" @ok="handleOk" />
+
+    <!-- 查看题目详情的模态框组件 -->
     <question-view-modal ref="modalView" @ok="handleOk" />
+
+    <!-- 编辑题目的模态框组件 -->
     <question-edit-modal ref="modalEdit" @ok="handleOk" />
   </a-card>
 </template>
+
 
 <script>
 import '../../plugins/bootstrap-table'

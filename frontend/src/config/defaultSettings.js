@@ -14,20 +14,41 @@
  */
 
 export default {
-  primaryColor: '#1890FF', // primary color of ant design
-  navTheme: 'dark', // theme for nav menu
-  layout: 'topmenu', // nav menu position: sidemenu or topmenu
-  contentWidth: 'Fixed', // layout of content: Fluid or Fixed, only works when layout is topmenu
-  fixedHeader: true, // sticky header
-  fixSiderbar: false, // sticky siderbar
-  autoHideHeader: false, //  auto hide header
+  // Ant Design 的主题色
+  primaryColor: '#1890FF',
+
+  // 导航菜单主题，可选 'dark' 或 'light'
+  navTheme: 'dark',
+
+  // 整体布局方式，可选 'sidemenu'（侧边菜单） 或 'topmenu'（顶部菜单）
+  layout: 'topmenu',
+
+  // 内容区布局，仅在 layout 为 'topmenu' 时生效
+  // 可选 'Fluid'（流式） 或 'Fixed'（固定宽度）
+  contentWidth: 'Fixed',
+
+  // 是否固定头部
+  fixedHeader: true,
+
+  // 是否固定侧边栏（仅在 layout 为 'sidemenu' 时生效）
+  fixSiderbar: false,
+
+  // 是否在向下滚动时自动隐藏头部
+  autoHideHeader: false,
+
+  // 是否启用色弱模式
   colorWeak: false,
+
+  // 是否启用多标签页模式
   multiTab: false,
+
+  // 是否为生产环境（根据环境变量判断）
   production: process.env.NODE_ENV === 'production' && process.env.VUE_APP_PREVIEW !== 'true',
-  // vue-ls options, localStorage中默认的存储前缀
+
+  // Vue-ls 插件配置项，用于本地存储
   storageOptions: {
-    namespace: 'pro__', // key prefix
-    name: 'ls', // name variable Vue.[ls] or this.[$ls],
-    storage: 'local' // storage name session, local, memory
+    namespace: 'pro__', // 存储键的前缀
+    name: 'ls', // Vue 实例上的属性名，可通过 this.$ls 访问
+    storage: 'local' // 存储方式，可选 'local'（localStorage）, 'session'（sessionStorage）, 'memory'（内存存储）
   }
 }

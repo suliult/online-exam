@@ -1,13 +1,23 @@
 <template>
+  <!-- 主页面容器 -->
   <div class="home-page page1">
+    <!-- 页面内容包装器 -->
     <div class="home-page-wrapper" id="page1-wrapper">
+      <!-- 背景文字，带有动态平移效果 -->
       <div class="page1-bg" style="transform: translate(0px, 200.953px);">Feature</div>
+
+      <!-- 主标题 -->
       <h2>What can <span>Online System</span> do for you </h2>
+
+      <!-- 标题下方的装饰线 -->
       <div class="title-line-wrapper page1-line"></div>
+
+      <!-- 特性列表组件 -->
       <list :data-source="features" />
     </div>
   </div>
 </template>
+
 
 <script>
 import List from './List'
@@ -57,27 +67,42 @@ const featuresCN = [
 ]
 
 export default {
+  // 组件名称
   name: 'Page1',
+
+  // 注册使用的子组件
   components: {
     List
   },
-  data () {
+
+  // 组件的数据
+  data() {
     return {
-      features: featuresCN
+      features: featuresCN // 初始化 features 数据，使用 featuresCN 数组
     }
   },
-  created () {
-    this.updateFeatures()
+
+  // 组件创建时的生命周期钩子
+  created() {
+    this.updateFeatures() // 组件创建时更新 features 数据
   },
+
+  // 组件方法
   methods: {
-    updateFeatures () {
-      const arr = featuresCN
-      const newArr = [[], [], []]
+    // 更新 features 数据的方法
+    updateFeatures() {
+      const arr = featuresCN // 使用 featuresCN 数组
+      const newArr = [[], [], []] // 创建一个包含三个空数组的新数组
+
+      // 遍历原数组，将元素分配到三个子数组中
       arr.forEach((item, index) => {
         newArr[Math.floor(index / 3)].push(item)
       })
+
+      // 更新 features 数据
       this.features = newArr
     }
   }
 }
+
 </script>

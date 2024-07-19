@@ -1,24 +1,32 @@
+// 导入基础样式文件
 @import '../index';
 
+// 定义多标签页组件的类名前缀
 @multi-tab-prefix-cls: ~"@{ant-pro-prefix}-multi-tab";
+// 定义多标签页包装器的类名前缀
 @multi-tab-wrapper-prefix-cls: ~"@{ant-pro-prefix}-multi-tab-wrapper";
 
 /*
+// 顶部菜单模式下的多标签页样式 (已注释掉)
 .topmenu .@{multi-tab-prefix-cls} {
   max-width: 1200px;
   margin: -23px auto 24px auto;
 }
 */
+
+// 多标签页组件的基本样式
 .@{multi-tab-prefix-cls} {
   margin: -23px -24px 24px -24px;
   background: #fff;
 }
 
+// 顶部菜单模式下多标签页包装器的样式
 .topmenu .@{multi-tab-wrapper-prefix-cls} {
   max-width: 1200px;
   margin: 0 auto;
 }
 
+// 顶部菜单模式且内容宽度为流式布局时的多标签页包装器样式
 .topmenu.content-width-Fluid .@{multi-tab-wrapper-prefix-cls} {
   max-width: 100%;
   margin: 0 auto;

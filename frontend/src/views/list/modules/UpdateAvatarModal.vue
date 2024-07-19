@@ -1,13 +1,20 @@
 <template>
+  <!-- 编辑封面的模态框 -->
   <a-modal title="编辑封面" :width="400" :visible="visible" :confirmLoading="confirmLoading" @cancel="handleCancel">
+    <!-- 提示信息 -->
     <p>截图直接粘贴到下面即可，建议图片不要大于80*80</p>
+    <!-- Summernote富文本编辑器容器，用于图片上传 -->
     <div id="summernote-exam-avatar"></div>
+    <!-- 自定义模态框底部按钮 -->
     <template slot="footer">
+      <!-- 完成按钮 -->
       <a-button key="update" @click="handleUpdate">完成</a-button>
+      <!-- 关闭按钮 -->
       <a-button key="cancel" @click="handleCancel">关闭</a-button>
     </template>
   </a-modal>
 </template>
+
 
 <script>
 import { examUpdate } from '@api/exam'

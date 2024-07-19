@@ -1,22 +1,32 @@
 <template>
+  <!-- 创建问题的模态框 -->
   <a-modal title="创建问题" :width="800" :visible="visible" :confirmLoading="confirmLoading" @cancel="handleCancel">
+    <!-- 加载中状态 -->
     <a-spin :spinning="confirmLoading">
+      <!-- 步骤条，显示当前步骤 -->
       <a-steps :current="currentStep" :style="{ marginBottom: '28px' }" size="small">
         <a-step title="问题内容" />
         <a-step title="问题分类" />
         <a-step title="问题选项" />
       </a-steps>
+
+      <!-- 表单 -->
       <a-form :form="form">
-        <!-- step1 -->
+        <!-- 步骤1：问题内容 -->
         <div v-show="currentStep === 0">
+          <!-- 题干 -->
           <a-form-item label="题干" :labelCol="labelCol" :wrapperCol="wrapperCol">
             <div id="summernote-question-name"></div>
           </a-form-item>
+          <!-- 解析 -->
           <a-form-item label="解析" :labelCol="labelCol" :wrapperCol="wrapperCol">
             <div id="summernote-question-desc"></div>
           </a-form-item>
         </div>
+
+        <!-- 步骤2：问题分类 -->
         <div v-show="currentStep === 1">
+          <!-- 题型选择 -->
           <a-form-item label="题型" :labelCol="labelCol" :wrapperCol="wrapperCol">
             <a-select v-decorator="['type', {rules: [{required: true}]}]" placeholder="请选择题型" style="width: 100%">
               <a-select-option v-for="typeObj in types" :value="typeObj.id" :key="typeObj.id">
@@ -25,6 +35,7 @@
             </a-select>
           </a-form-item>
 
+          <!-- 归类选择 -->
           <a-form-item label="归类" :labelCol="labelCol" :wrapperCol="wrapperCol">
             <a-select v-decorator="['category', { rules: [{required: true}]}]" placeholder="请选择分类" style="width: 100%">
               <a-select-option v-for="category in categories" :value="category.id" :key="category.id">
@@ -33,6 +44,7 @@
             </a-select>
           </a-form-item>
 
+          <!-- 难度选择 -->
           <a-form-item label="难度" :labelCol="labelCol" :wrapperCol="wrapperCol">
             <a-select v-decorator="['level', { rules: [{required: true}]}]" placeholder="请选择难度" style="width: 100%">
               <a-select-option v-for="level in levels" :value="level.id" :key="level.id">
@@ -42,8 +54,9 @@
           </a-form-item>
         </div>
 
+        <!-- 步骤3：问题选项 -->
         <div v-show="currentStep === 2">
-          <!-- 非判断题的时候显示 -->
+          <!-- 非判断题时显示的选项创建输入框 -->
           <a-form-item label="创建选项" :labelCol="labelCol" :wrapperCol="wrapperCol" v-if="type!==3">
             <a-input
               v-decorator="['option', { rules: [{required: true}]}]"
@@ -52,9 +65,9 @@
             />
           </a-form-item>
 
+          <!-- 设置答案 -->
           <a-form-item label="设置答案" :labelCol="labelCol" :wrapperCol="wrapperCol" enterButton="Search">
-            <!-- 注意这里要按照单选、多选和判断进行区分 -->
-            <!-- 单选 -->
+            <!-- 单选题答案选择 -->
             <a-select
               style="width: 100%"
               placeholder="请选择单选题的答案"
@@ -62,12 +75,12 @@
               @change="handleSingleChange"
               :value="answerOption"
             >
-
               <a-select-option v-for="(option,index) in options" :value="option.content" :key="index">
                 {{ option.content }}
               </a-select-option>
             </a-select>
-            <!-- 多选 -->
+
+            <!-- 多选题答案选择 -->
             <a-select
               mode="multiple"
               :size="size"
@@ -82,7 +95,8 @@
                 {{ option.content }}
               </a-select-option>
             </a-select>
-            <!-- 判断，本质上和单选一样 -->
+
+            <!-- 判断题答案选择（本质上和单选一样） -->
             <a-select
               style="width: 100%"
               placeholder="请选择判断题的答案"
@@ -90,16 +104,16 @@
               @change="handleSingleChange"
               :value="answerOption"
             >
-
               <a-select-option v-for="(option,index) in options" :value="option.content" :key="index">
                 {{ option.content }}
               </a-select-option>
             </a-select>
           </a-form-item>
         </div>
-        <!-- step1 end -->
       </a-form>
     </a-spin>
+
+    <!-- 模态框底部按钮 -->
     <template slot="footer">
       <a-button key="back" @click="backward" v-if="currentStep > 0" :style="{ float: 'left' }">上一步</a-button>
       <a-button key="cancel" @click="handleCancel">取消</a-button>
@@ -109,6 +123,7 @@
     </template>
   </a-modal>
 </template>
+
 
 <script>
 import '../../../plugins/summernote'

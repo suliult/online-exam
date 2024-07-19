@@ -1,25 +1,37 @@
 <template>
+  <!-- 卡片列表容器 -->
   <div class="card-list" ref="content">
+    <!-- 使用 a-list 组件展示卡片列表 -->
     <a-list
       :grid="{gutter: 24, lg: 3, md: 2, sm: 1, xs: 1}"
-      :dataSource="dataSource"
+    :dataSource="dataSource"
     >
-      <a-list-item slot="renderItem" slot-scope="item">
-        <a-card :hoverable="true" @click="joinExam(item.id)">
-          <a-card-meta>
-            <div style="margin-bottom: 3px" slot="title">{{ item.title }}</div>
-            <a-avatar class="card-avatar" slot="avatar" :src="item.avatar | imgSrcFilter" size="large" />
-            <div class="meta-content" slot="description">{{ item.content }}</div>
-          </a-card-meta>
-          <template class="ant-card-actions" slot="actions">
-            <a>满分：{{ item.score }}分</a>
-            <a>限时：{{ item.elapse }}分钟</a>
-          </template>
-        </a-card>
-      </a-list-item>
+    <!-- 自定义列表项渲染 -->
+    <a-list-item slot="renderItem" slot-scope="item">
+      <!-- 可悬停的卡片，点击触发 joinExam 方法 -->
+      <a-card :hoverable="true" @click="joinExam(item.id)">
+        <!-- 卡片元数据 -->
+        <a-card-meta>
+          <!-- 卡片标题 -->
+          <div style="margin-bottom: 3px" slot="title">{{ item.title }}</div>
+          <!-- 卡片头像 -->
+          <a-avatar class="card-avatar" slot="avatar" :src="item.avatar | imgSrcFilter" size="large" />
+          <!-- 卡片描述内容 -->
+          <div class="meta-content" slot="description">{{ item.content }}</div>
+        </a-card-meta>
+        <!-- 卡片底部操作区 -->
+        <template class="ant-card-actions" slot="actions">
+          <!-- 显示满分信息 -->
+          <a>满分：{{ item.score }}分</a>
+          <!-- 显示限时信息 -->
+          <a>限时：{{ item.elapse }}分钟</a>
+        </template>
+      </a-card>
+    </a-list-item>
     </a-list>
   </div>
 </template>
+
 
 <script>
 import { getExamCardList } from '../../api/exam'

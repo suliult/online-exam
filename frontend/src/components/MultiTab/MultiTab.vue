@@ -30,34 +30,38 @@ export default {
   name: 'MultiTab',
   data () {
     return {
-      fullPathList: [],
-      pages: [],
-      activeKey: '',
-      newTabIndex: 0
+      fullPathList: [], // 存储所有打开标签页的完整路径
+      pages: [], // 存储所有打开的页面对象
+      activeKey: '', // 当前激活的标签页的 key
+      newTabIndex: 0 // 新标签页的索引（似乎未使用）
     }
   },
   created () {
+    // 初始化时添加当前路由到页面列表和路径列表
     this.pages.push(this.$route)
     this.fullPathList.push(this.$route.fullPath)
     this.selectedLastPath()
   },
   methods: {
+    // 处理标签页的编辑操作（添加或删除）
     onEdit (targetKey, action) {
       this[action](targetKey)
     },
+    // 移除指定的标签页
     remove (targetKey) {
       this.pages = this.pages.filter(page => page.fullPath !== targetKey)
       this.fullPathList = this.fullPathList.filter(path => path !== targetKey)
-      // 判断当前标签是否关闭，若关闭则跳转到最后一个还存在的标签页
+      // 如果关闭的是当前标签，则跳转到最后一个存在的标签页
       if (!this.fullPathList.includes(this.activeKey)) {
         this.selectedLastPath()
       }
     },
+    // 选择最后一个标签页
     selectedLastPath () {
       this.activeKey = this.fullPathList[this.fullPathList.length - 1]
     },
 
-    // content menu
+    // 右键菜单相关方法
     closeThat (e) {
       this.remove(e)
     },
@@ -93,6 +97,7 @@ export default {
         }
       })
     },
+    // 处理右键菜单点击事件
     closeMenuClick ({ key, item, domEvent }) {
       const vkey = domEvent.target.getAttribute('data-vkey')
       switch (key) {
@@ -111,6 +116,7 @@ export default {
           break
       }
     },
+    // 渲染标签页的右键菜单
     renderTabPaneMenu (e) {
       return (
         <a-menu {...{ on: { click: this.closeMenuClick } }}>
@@ -121,7 +127,7 @@ export default {
         </a-menu>
       )
     },
-    // render
+    // 渲染单个标签页
     renderTabPane (title, keyPath) {
       const menu = this.renderTabPaneMenu(keyPath)
 
@@ -133,6 +139,7 @@ export default {
     }
   },
   watch: {
+    // 监听路由变化，更新标签页
     '$route': function (newVal) {
       this.activeKey = newVal.fullPath
       if (this.fullPathList.indexOf(newVal.fullPath) < 0) {
@@ -140,10 +147,12 @@ export default {
         this.pages.push(newVal)
       }
     },
+    // 监听激活的标签页变化，进行路由跳转
     activeKey: function (newPathKey) {
       this.$router.push({ path: newPathKey })
     }
   },
+  // 渲染整个多标签组件
   render () {
     const { onEdit, $data: { pages } } = this
     const panes = pages.map(page => {
@@ -172,4 +181,5 @@ export default {
     )
   }
 }
+
 </script>

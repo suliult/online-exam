@@ -2,8 +2,9 @@ package lsgwr.exam.exception;
 /**
  * 自定义异常类，用于处理考试相关的异常。
  */
-import lsgwr.exam.enums.ResultEnum;
+
 import lombok.Getter;
+import lsgwr.exam.enums.ResultEnum;
 
 @Getter
 public class ExamException extends RuntimeException {

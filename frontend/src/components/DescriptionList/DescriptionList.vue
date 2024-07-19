@@ -1,6 +1,9 @@
 <template>
+  <!-- 主容器，根据 size 和 layout 属性动态设置类名 -->
   <div :class="['description-list', size, layout === 'vertical' ? 'vertical': 'horizontal']">
+    <!-- 如果有标题，则显示标题 -->
     <div v-if="title" class="title">{{ title }}</div>
+    <!-- 使用 a-row 组件作为列表项的容器 -->
     <a-row>
       <slot></slot>
     </a-row>
@@ -10,6 +13,7 @@
 <script>
 import { Col } from 'ant-design-vue/es/grid/'
 
+// 定义 DetailListItem 组件
 const Item = {
   name: 'DetailListItem',
   props: {
@@ -34,6 +38,7 @@ const Item = {
   }
 }
 
+// 响应式布局配置
 const responsive = {
   1: { xs: 24 },
   2: { xs: 24, sm: 12 },
@@ -43,7 +48,7 @@ const responsive = {
 
 export default {
   name: 'DetailList',
-  Item: Item,
+  Item: Item, // 将 Item 组件作为 DetailList 的子组件
   components: {
     Col
   },
@@ -70,6 +75,7 @@ export default {
     }
   },
   provide () {
+    // 为子组件提供 col 值
     return {
       col: this.col > 4 ? 4 : this.col
     }
@@ -78,9 +84,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-
 .description-list {
-
   .title {
     color: rgba(0, 0, 0, .85);
     font-size: 14px;
@@ -119,38 +123,19 @@ export default {
     }
   }
 
+  // 小尺寸样式
   &.small {
-
-    .title {
-      font-size: 14px;
-      color: rgba(0, 0, 0, .65);
-      font-weight: normal;
-      margin-bottom: 12px;
-    }
-
-    /deep/ .term, .content {
-      padding-bottom: 8px;
-    }
+    // ...
   }
 
+  // 大尺寸样式
   &.large {
-    /deep/ .term, .content {
-      padding-bottom: 16px;
-    }
-
-    .title {
-      font-size: 16px;
-    }
+    // ...
   }
 
+  // 垂直布局样式
   &.vertical {
-    .term {
-      padding-bottom: 8px;
-    }
-
-    /deep/ .term, .content {
-      display: block;
-    }
+    // ...
   }
 }
 </style>

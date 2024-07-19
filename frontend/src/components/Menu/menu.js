@@ -28,12 +28,13 @@ export default {
   },
   data () {
     return {
-      openKeys: [],
-      selectedKeys: [],
-      cachedOpenKeys: []
+      openKeys: [],        // 当前展开的 SubMenu 菜单项 key 数组
+      selectedKeys: [],    // 当前选中的菜单项 key 数组
+      cachedOpenKeys: []   // 缓存的展开 SubMenu 菜单项 key 数组
     }
   },
   computed: {
+    // 计算根级菜单的 key
     rootSubmenuKeys: vm => {
       const keys = []
       vm.menu.forEach(item => keys.push(item.path))
@@ -44,6 +45,7 @@ export default {
     this.updateMenu()
   },
   watch: {
+    // 监听折叠状态变化
     collapsed (val) {
       if (val) {
         this.cachedOpenKeys = this.openKeys.concat()
@@ -52,12 +54,13 @@ export default {
         this.openKeys = this.cachedOpenKeys
       }
     },
+    // 监听路由变化
     $route: function () {
       this.updateMenu()
     }
   },
   methods: {
-    // select menu item
+    // 处理菜单展开/收起
     onOpenChange (openKeys) {
       // 在水平模式下时执行，并且不再执行后续
       if (this.mode === 'horizontal') {
@@ -72,6 +75,7 @@ export default {
         this.openKeys = latestOpenKey ? [latestOpenKey] : []
       }
     },
+    // 更新菜单状态
     updateMenu () {
       const routes = this.$route.matched.concat()
       const { hidden } = this.$route.meta
@@ -91,13 +95,14 @@ export default {
       this.collapsed ? (this.cachedOpenKeys = openKeys) : (this.openKeys = openKeys)
     },
 
-    // render
+    // 渲染菜单项
     renderItem (menu) {
       if (!menu.hidden) {
         return menu.children && !menu.hideChildrenInMenu ? this.renderSubMenu(menu) : this.renderMenuItem(menu)
       }
       return null
     },
+    // 渲染菜单项
     renderMenuItem (menu) {
       const target = menu.meta.target || null
       const tag = target && 'a' || 'router-link'
@@ -122,6 +127,7 @@ export default {
         </Item>
       )
     },
+    // 渲染子菜单
     renderSubMenu (menu) {
       const itemArr = []
       if (!menu.hideChildrenInMenu) {
@@ -137,6 +143,7 @@ export default {
         </SubMenu>
       )
     },
+    // 渲染图标
     renderIcon (icon) {
       if (icon === 'none' || icon === undefined) {
         return null
@@ -149,6 +156,7 @@ export default {
     }
   },
 
+  // 渲染整个菜单
   render () {
     const { mode, theme, menu } = this
     const props = {
@@ -170,7 +178,7 @@ export default {
       }
       return this.renderItem(item)
     })
-    // {...{ props, on: on }}
+
     return (
       <Menu vModel={this.selectedKeys} {...{ props, on: on }}>
         {menuTree}

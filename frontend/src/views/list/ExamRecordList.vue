@@ -1,27 +1,42 @@
 <template>
   <div>
+    <!-- 考试记录卡片 -->
     <a-card style="margin-top: 24px" :bordered="false" title="参加过的考试">
+      <!-- 搜索框 -->
       <div slot="extra">
         <a-input-search style="margin-left: 16px; width: 272px;"/>
       </div>
+
+      <!-- 考试记录列表 -->
       <a-list size="large">
+        <!-- 遍历考试记录 -->
         <a-list-item :key="index" v-for="(item, index) in data">
+          <!-- 考试基本信息 -->
           <a-list-item-meta :description="item.exam.examDescription">
+            <!-- 考试头像 -->
             <a-avatar slot="avatar" size="large" shape="square" :src="item.exam.examAvatar | imgSrcFilter"/>
+            <!-- 考试名称 -->
             <a slot="title">{{ item.exam.examName }}</a>
           </a-list-item-meta>
+
+          <!-- 查看详情按钮 -->
           <div slot="actions">
             <a @click="viewExamRecordDetail(item.examRecord)">查看考试详情</a>
           </div>
+
+          <!-- 考试记录详细信息 -->
           <div class="list-content">
+            <!-- 考试所有者 -->
             <div class="list-content-item">
               <span>Owner</span>
               <p>{{ item.user.userUsername }}</p>
             </div>
+            <!-- 开始时间 -->
             <div class="list-content-item">
               <span>开始时间</span>
               <p>{{ item.examRecord.examJoinDate }}</p>
             </div>
+            <!-- 考试得分 -->
             <div class="list-content-item">
               <span>分数</span>
               <p>{{ item.examRecord.examJoinScore }}</p>
@@ -33,6 +48,7 @@
     </a-card>
   </div>
 </template>
+
 
 <script>
 import HeadInfo from '../../components/tools/HeadInfo'
